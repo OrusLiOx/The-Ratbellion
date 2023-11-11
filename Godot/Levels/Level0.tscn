@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Prefabs/Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/ClimbSurface.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -222, -66 )
+scale = Vector2( 5, 5 )
+
+[node name="Wall2" type="StaticBody2D" parent="." groups=["Floor"]]
+position = Vector2( 556, -83 )
+scale = Vector2( 25, 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" groups=["Floor"]]
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="Wall2" groups=["Floor"]]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="Area2D" type="Area2D" parent="Wall2" groups=["Terrain"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Wall" type="StaticBody2D" parent="." groups=["Floor"]]
+position = Vector2( 269, -62 )
+scale = Vector2( 5, 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" groups=["Floor"]]
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="Wall" groups=["Floor"]]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="Area2D" type="Area2D" parent="Wall" groups=["Terrain"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/Area2D"]
+shape = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Floor"]]
+position = Vector2( 174, -8 )
+scale = Vector2( 50, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["Floor"]]
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" groups=["Floor"]]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" groups=["Terrain"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( -69, -98 )
+speed = 500
+jumpPower = -1000
+gravity = 50
+
+[node name="Node2D3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 296, 167 )
+scale = Vector2( 1, 50 )
