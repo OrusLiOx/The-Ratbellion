@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Prefabs/Terrain.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/ClimbSurface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TerrainPrefabs/ClimbSurface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TerrainPrefabs/OneWayCollision.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -10,70 +11,62 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Node2D2" parent="." instance=ExtResource( 1 )]
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="TerrainPrefab" parent="Terrain" instance=ExtResource( 1 )]
 position = Vector2( -222, -66 )
 scale = Vector2( 5, 5 )
 
-[node name="Wall2" type="StaticBody2D" parent="." groups=["Floor"]]
+[node name="BigBlock" type="StaticBody2D" parent="Terrain" groups=["Floor"]]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 556, -83 )
 scale = Vector2( 25, 25 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" groups=["Floor"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BigBlock" groups=["Floor"]]
 shape = SubResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="Wall2" groups=["Floor"]]
+[node name="ColorRect" type="ColorRect" parent="Terrain/BigBlock" groups=["Floor"]]
 margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
 
-[node name="Area2D" type="Area2D" parent="Wall2" groups=["Terrain"]]
+[node name="Area2D" type="Area2D" parent="Terrain/BigBlock" groups=["Terrain"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BigBlock/Area2D"]
 shape = SubResource( 3 )
 
-[node name="Wall" type="StaticBody2D" parent="." groups=["Floor"]]
-position = Vector2( 269, -62 )
-scale = Vector2( 5, 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" groups=["Floor"]]
-shape = SubResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="Wall" groups=["Floor"]]
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-
-[node name="Area2D" type="Area2D" parent="Wall" groups=["Terrain"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/Area2D"]
-shape = SubResource( 3 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Floor"]]
-position = Vector2( 174, -8 )
-scale = Vector2( 50, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["Floor"]]
-shape = SubResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D" groups=["Floor"]]
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-
-[node name="Area2D" type="Area2D" parent="StaticBody2D" groups=["Terrain"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
-shape = SubResource( 3 )
-
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -69, -98 )
-speed = 500
-jumpPower = -1000
-gravity = 50
-
-[node name="Node2D3" parent="." instance=ExtResource( 3 )]
+[node name="climb" parent="Terrain" instance=ExtResource( 3 )]
 position = Vector2( 296, 167 )
 scale = Vector2( 1, 50 )
+
+[node name="OneWay" parent="Terrain" instance=ExtResource( 4 )]
+position = Vector2( 216, -323 )
+scale = Vector2( 11.138, 1 )
+
+[node name="TerrainPrefab2" parent="Terrain" instance=ExtResource( 1 )]
+position = Vector2( 169, 609 )
+scale = Vector2( 200, 5 )
+
+[node name="TerrainPrefab3" parent="Terrain" instance=ExtResource( 1 )]
+position = Vector2( -500, -66 )
+scale = Vector2( 5, 200 )
+
+[node name="TerrainPrefab4" parent="Terrain" instance=ExtResource( 1 )]
+position = Vector2( 1000, -66 )
+scale = Vector2( 5, 200 )
+
+[node name="climb2" parent="Terrain" instance=ExtResource( 3 )]
+position = Vector2( 818, 167 )
+scale = Vector2( 1, 50 )
+
+[node name="climb3" parent="Terrain" instance=ExtResource( 3 )]
+position = Vector2( -317, 483 )
+scale = Vector2( 10, 50 )
+
+[node name="OneWay2" parent="Terrain" instance=ExtResource( 4 )]
+position = Vector2( 158, -7 )
+scale = Vector2( 50, 1 )
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 376, -374 )
