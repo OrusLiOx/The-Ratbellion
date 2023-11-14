@@ -1,72 +1,279 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://TerrainPrefabs/ClimbSurface.tscn" type="PackedScene" id=3]
-[ext_resource path="res://TerrainPrefabs/OneWayCollision.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TerrainPrefabs/ClimbArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TerrainPrefabs/OneWayTerrain.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TerrainPrefabs/SafeArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/DeadRat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/Level0.gd" type="Script" id=7]
+[ext_resource path="res://TerrainPrefabs/RespawnZone.tscn" type="PackedScene" id=8]
+[ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/Levels/Level0.png" type="Texture" id=10]
+[ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=11]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 11 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Level0" type="Node2D"]
+script = ExtResource( 7 )
+deadrat = ExtResource( 6 )
 
 [node name="Terrain" type="Node2D" parent="."]
+position = Vector2( 2548, -609 )
 
-[node name="TerrainPrefab" parent="Terrain" instance=ExtResource( 1 )]
-position = Vector2( -222, -66 )
-scale = Vector2( 5, 5 )
+[node name="Safe" type="Node2D" parent="Terrain"]
 
-[node name="BigBlock" type="StaticBody2D" parent="Terrain" groups=["Floor"]]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 556, -83 )
-scale = Vector2( 25, 25 )
+[node name="Safe" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( -258, -111 )
+scale = Vector2( 300, 80 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BigBlock" groups=["Floor"]]
-shape = SubResource( 2 )
+[node name="Safe2" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 6690, 50 )
+scale = Vector2( 20, 80 )
 
-[node name="ColorRect" type="ColorRect" parent="Terrain/BigBlock" groups=["Floor"]]
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
+[node name="Safe4" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 7959, -516 )
+scale = Vector2( 130, 50 )
 
-[node name="Area2D" type="Area2D" parent="Terrain/BigBlock" groups=["Terrain"]]
+[node name="Safe3" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 7083, 656 )
+scale = Vector2( 20, 20 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BigBlock/Area2D"]
-shape = SubResource( 3 )
+[node name="Safe5" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 4053, 349 )
+scale = Vector2( 10, 10 )
 
-[node name="climb" parent="Terrain" instance=ExtResource( 3 )]
-position = Vector2( 296, 167 )
-scale = Vector2( 1, 50 )
+[node name="Safe6" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 4682, -39 )
+scale = Vector2( 220, 30 )
 
-[node name="OneWay" parent="Terrain" instance=ExtResource( 4 )]
-position = Vector2( 216, -323 )
-scale = Vector2( 11.138, 1 )
+[node name="Safe7" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 5359, 573 )
+scale = Vector2( 10, 10 )
 
-[node name="TerrainPrefab2" parent="Terrain" instance=ExtResource( 1 )]
-position = Vector2( 169, 609 )
-scale = Vector2( 200, 5 )
+[node name="LevelEndArea" parent="Terrain" instance=ExtResource( 9 )]
+position = Vector2( 8576, 158 )
+scale = Vector2( 50, 50 )
 
-[node name="TerrainPrefab3" parent="Terrain" instance=ExtResource( 1 )]
-position = Vector2( -500, -66 )
-scale = Vector2( 5, 200 )
+[node name="Climb" type="Node2D" parent="Terrain"]
 
-[node name="TerrainPrefab4" parent="Terrain" instance=ExtResource( 1 )]
-position = Vector2( 1000, -66 )
-scale = Vector2( 5, 200 )
+[node name="StartClimb" parent="Terrain/Climb" instance=ExtResource( 3 )]
+position = Vector2( -246, 384 )
+scale = Vector2( 10, 40 )
 
-[node name="climb2" parent="Terrain" instance=ExtResource( 3 )]
-position = Vector2( 818, 167 )
-scale = Vector2( 1, 50 )
-
-[node name="climb3" parent="Terrain" instance=ExtResource( 3 )]
-position = Vector2( -317, 483 )
+[node name="JumpFromClimb" parent="Terrain/Climb" instance=ExtResource( 3 )]
+position = Vector2( 1546, 307 )
 scale = Vector2( 10, 50 )
 
-[node name="OneWay2" parent="Terrain" instance=ExtResource( 4 )]
-position = Vector2( 158, -7 )
-scale = Vector2( 50, 1 )
+[node name="Rope2" parent="Terrain/Climb" instance=ExtResource( 3 )]
+position = Vector2( 6993, 484 )
+scale = Vector2( 2, 50 )
 
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 376, -374 )
+[node name="Hide" parent="Terrain/Climb" instance=ExtResource( 3 )]
+position = Vector2( 4053, 350 )
+scale = Vector2( 10, 10 )
+
+[node name="Rope1" parent="Terrain/Climb" instance=ExtResource( 3 )]
+position = Vector2( 2283, 435 )
+scale = Vector2( 2, 35 )
+
+[node name="OneWay" type="Node2D" parent="Terrain"]
+
+[node name="OneWay1" parent="Terrain/OneWay" instance=ExtResource( 4 )]
+position = Vector2( -246, -8 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWay2" parent="Terrain/OneWay" instance=ExtResource( 4 )]
+position = Vector2( 554, -8 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWay3" parent="Terrain/OneWay" instance=ExtResource( 4 )]
+position = Vector2( 2287, 93 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWay4" parent="Terrain/OneWay" instance=ExtResource( 4 )]
+position = Vector2( 6991, -5.99998 )
+scale = Vector2( 10, 1 )
+
+[node name="Solid" type="Node2D" parent="Terrain"]
+
+[node name="Block1" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( -774, 564 )
+scale = Vector2( 5, 5 )
+
+[node name="Block2" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( -446, 509 )
+scale = Vector2( 10, 10 )
+
+[node name="Block4" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 954, -447 )
+scale = Vector2( 30, 70 )
+
+[node name="Block5" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 1987, 383 )
+scale = Vector2( 20, 30 )
+
+[node name="Floor" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 1145, 593 )
+scale = Vector2( 80, 15 )
+
+[node name="Block6" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 4135, -547 )
+scale = Vector2( 320, 40 )
+
+[node name="Block7" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 8290, 384 )
+scale = Vector2( 120, 40 )
+
+[node name="Block8" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 4044.5, -39 )
+scale = Vector2( 31.75, 30 )
+
+[node name="Block3" parent="Terrain/Solid" instance=ExtResource( 1 )]
+position = Vector2( 154, 382 )
+scale = Vector2( 30, 40 )
+
+[node name="Boundary" type="Node2D" parent="Terrain"]
+
+[node name="RightWall" parent="Terrain/Boundary" instance=ExtResource( 1 )]
+position = Vector2( 9244, -455 )
+scale = Vector2( 5, 50 )
+
+[node name="LeftWall" parent="Terrain/Boundary" instance=ExtResource( 1 )]
+position = Vector2( -2598, -22 )
+scale = Vector2( 5, 100 )
+
+[node name="Ceiling" parent="Terrain/Boundary" instance=ExtResource( 1 )]
+position = Vector2( 3342, -892 )
+scale = Vector2( 600, 5 )
+
+[node name="Floor" parent="Terrain/Boundary" instance=ExtResource( 1 )]
+position = Vector2( 2422, 659 )
+scale = Vector2( 500, 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -728.0
+margin_top = -2153.0
+margin_right = 12982.0
+margin_bottom = 1124.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5871, -725.5 )
+texture = ExtResource( 10 )
+
+[node name="CheckPoints" type="Node2D" parent="."]
+position = Vector2( 2548, -609 )
+
+[node name="RespawnZone" parent="CheckPoints" instance=ExtResource( 8 )]
+position = Vector2( 2567, 609 )
+
+[node name="RespawnZone2" parent="CheckPoints" instance=ExtResource( 8 )]
+position = Vector2( -1359, 609 )
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="Move" type="Label" parent="Text"]
+margin_left = 633.0
+margin_top = -186.0
+margin_right = 764.0
+margin_bottom = -110.0
+theme = SubResource( 2 )
+text = "Press A/D
+to move
+Left/Right"
+align = 1
+
+[node name="Jump" type="Label" parent="Text"]
+margin_left = 1695.0
+margin_top = -227.0
+margin_right = 1840.0
+margin_bottom = -158.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "Press Space
+to Jump"
+align = 1
+
+[node name="Cimb" type="Label" parent="Text"]
+margin_left = 2031.0
+margin_top = -175.0
+margin_right = 2176.0
+margin_bottom = -82.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "Press W/S
+to climb
+certain
+surfaces"
+align = 1
+
+[node name="Drop" type="Label" parent="Text"]
+margin_left = 2987.0
+margin_top = -800.0
+margin_right = 3194.0
+margin_bottom = -707.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "Press S+space
+to drop through
+thin platforms"
+align = 1
+
+[node name="ClimbJump" type="Label" parent="Text"]
+margin_left = 4323.0
+margin_top = -618.0
+margin_right = 4530.0
+margin_bottom = -525.0
+rect_pivot_offset = Vector2( 387, 187 )
+theme = SubResource( 2 )
+text = "You can jump
+while climbing"
+align = 1
+
+[node name="Flag" type="Label" parent="Text"]
+margin_left = 1277.0
+margin_top = -169.0
+margin_right = 1484.0
+margin_bottom = -76.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "Touching a flag
+sets your
+spawn point"
+align = 1
+
+[node name="danger" type="Label" parent="Text"]
+margin_left = 5327.0
+margin_top = -216.0
+margin_right = 5574.0
+margin_bottom = -123.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "A cat will catch you
+if you Stand in the
+open too long"
+align = 1
+
+[node name="climb danger" type="Label" parent="Text"]
+margin_left = 9183.0
+margin_top = -221.0
+margin_right = 9430.0
+margin_bottom = -128.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "You can still 
+be seen while
+on a rope"
+align = 1
+
+[node name="DeadRats" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 439, 0 )
+
+[connection signal="death" from="Player" to="." method="_on_Player_death"]

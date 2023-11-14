@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GodotIcon.png-87e5d7ecfa8c73ca1aaaa5bab79f05e6.stex"
+path="res://.import/HomeIcon.png-068e7380a4e55835dc2554d320a6a70a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GodotIcon.png"
-dest_files=[ "res://.import/GodotIcon.png-87e5d7ecfa8c73ca1aaaa5bab79f05e6.stex" ]
+source_file="res://Sprites/HomeIcon.png"
+dest_files=[ "res://.import/HomeIcon.png-068e7380a4e55835dc2554d320a6a70a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

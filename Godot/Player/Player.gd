@@ -3,14 +3,26 @@ extends KinematicBody2D
 export var speed = 500
 export var jumpPower =-1000
 export var gravity = 50
-
+export var TimeToDie = 5
+export var controlLock = false
 var velocity = Vector2.ZERO
+var fadeObjective
+var paused = false
+
 var walking = false
 var climbing = false
-var climbAnim = true
+
 var grounded = false
 var numGroundsTouched = 0
+
+var climbAnim = true
 var canClimb = false
+
+var safeZonesTouched = 0
+var timer:Timer
+var safe = true
+var dead = false
+var respawnPoint
 
 var staticAnim : AnimatedSprite
 var furAnim : AnimatedSprite
@@ -18,25 +30,47 @@ var wings : AnimatedSprite
 var bodyCol: CollisionShape2D
 var feetCol: CollisionShape2D
 var rand: RandomNumberGenerator
+var vignette : ColorRect
+var objective : RichTextLabel
 
 # cheat codes
-var rainbowRat = false
-var changeOnJump = false
-var infiniteJump = true
-var testAnims = false
-var invincible = false
+var rainbowRat
+var changeOnJump
+var infiniteJump
+var testAnims
+var invincible
+
+signal death( transform,  color)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Camera2D.make_current()
-	
+	# get components
+	# animation stuff
 	staticAnim = $StaticSprite
 	furAnim = $FurSprite
 	wings = $Wings
 	spritePlaying(true)
-	
+	# collider stuff
 	bodyCol = $CollisionShape2D
 	feetCol = $PlayerFeet/CollisionShape2D
+	
+	vignette = $Camera2D/ColorRect
+	timer = $Timer
+	respawnPoint = position
+	
+	objective = $Objective
+	
+	$Pause.visible = false
+	$Settings.visible = false
+	objective.visible = false
+	# set cheat codes
+	cheatCode("RainbowRat", false)
+	cheatCode("Pidgeon", true)
+	cheatCode("RainbowJump", false)
+	cheatCode("LabRat", false)
+	cheatCode("Catnip", false)
+	cheatCode("GhostRat", false)
 	
 	rand = RandomNumberGenerator.new()
 	rand.randomize()
@@ -44,18 +78,31 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Pause"):
+		pause()
+	# dying things
+	if Input.is_action_just_pressed("Restart"):
+		respawn()
+	if dead and grounded:
+		respawn()
+	# vignette
+	if !timer.is_stopped():
+		vignette.modulate.a = (1.0-timer.time_left/5.0) *164.0/255.0
+	if fadeObjective:
+		objective.modulate.a -=.01
 	# figure out movement
-	determineWalk()
-	determineClimb()
 	determineFall()
-	determineJump()
+	if !controlLock:
+		determineWalk()
+		determineClimb()
+		determineJump()
+		animate()
 	# perform movement
-	velocity = move_and_slide(velocity)
-	velocity.x = lerp(velocity.x,0,.5)
-	if climbing:
-		velocity.y = lerp(0,velocity.y,.5)
-	
-	animate()
+	if !paused:
+		velocity = move_and_slide(velocity)
+		velocity.x = lerp(velocity.x,0,.5)
+		if climbing:
+			velocity.y = lerp(0,velocity.y,.5)
 
 # determine movement functions
 func determineWalk():
@@ -88,13 +135,17 @@ func determineClimb():
 		else:
 			climbAnim = false
 func determineJump():
-	if Input.is_action_pressed("Jump") and (climbing or grounded or infiniteJump):
-		velocity.y = jumpPower
-		climbing = false
-		if changeOnJump:
-			pickColor()
-	elif Input.is_action_just_released("Jump") and velocity.y < 0:
-		velocity.y = 0
+	if  Input.is_action_pressed("Jump") and Input.is_action_pressed("Down"):
+			self.collision_mask =0b010
+	else:
+		self.collision_mask =0b110
+		if 	Input.is_action_pressed("Jump") and (climbing or grounded or infiniteJump):
+			velocity.y = jumpPower
+			climbing = false
+			if changeOnJump:
+				pickColor()
+		elif Input.is_action_just_released("Jump") and velocity.y < 0:
+			velocity.y = 0
 func determineFall():
 	if !climbing:
 		velocity.y = velocity.y + gravity
@@ -120,10 +171,10 @@ func setAnimation(var anim):
 		else:
 			wings.animation = "Two"
 	if testAnims:
-		if anim == "Idle":
-			furAnim.animation = "TestIdle"
-		else:
+		if anim == "Run" or anim == "Jump":
 			furAnim.animation = "TestRun"
+		else:
+			furAnim.animation = "TestIdle"
 	else:
 		staticAnim.animation = anim
 		furAnim.animation = anim
@@ -164,12 +215,32 @@ func pickColor():
 	furAnim.modulate = color
 	wings.modulate = color
 
+func respawn():
+	setAnimation("Dead")
+	controlLock = true
+	dead = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	emit_signal("death", transform, furAnim.modulate)
+	controlLock = false
+	position = respawnPoint
+	setAnimation("Idle")
+	pickColor()
+func pause():
+	paused = !paused
+	controlLock = paused
+	$Pause.visible = paused
+
+func startObjective(var text):
+	objective.text = text
+	yield(get_tree().create_timer(5.0), "timeout")
+	objective.modulate.a = 1
+	fadeObjective = true
 # cheat codes
 func cheatCode(var code, var active):
 	match code:
 		"RainbowRat" : 
 			rainbowRat = active
-		"Pigeon" :
+		"Pidgeon" :
 			infiniteJump = active
 			wings.visible = active
 		"RainbowJump":
@@ -179,18 +250,54 @@ func cheatCode(var code, var active):
 			staticAnim.visible = !active
 		"Catnip":
 			invincible = active
+		"GhostRat":
+			furAnim.visible = !active
 				
 # collision triggers
 func _on_Feet_area_entered(area):
-	if(area.is_in_group("Terrain")):
-		numGroundsTouched += 1
-		grounded = numGroundsTouched > 0
-	elif(area.is_in_group("Climbable")):
-		canClimb = true
+	for g in area.get_groups():
+		match(g):
+			"Terrain":
+				numGroundsTouched += 1
+				grounded = true
+			"Climbable":
+				canClimb = true
+			"SafeZone":
+				safeZonesTouched += 1
+				timer.stop()
+				vignette.visible = false
+			"Respawn":
+				respawnPoint = area.global_position
 func _on_Feet_area_exited(area):
-	if(area.is_in_group("Terrain")):
-		numGroundsTouched -= 1
-		grounded = numGroundsTouched > 0
-	elif(area.is_in_group("Climbable")):
-		canClimb = false
-		climbing = false
+	for g in area.get_groups():
+		match(g):
+			"Terrain":
+				numGroundsTouched -= 1
+				grounded = numGroundsTouched > 0
+			"Climbable":
+				canClimb = false
+				climbing = false
+			"SafeZone":
+				safeZonesTouched -= 1
+				if !safeZonesTouched > 0 and !invincible:
+					timer.wait_time = TimeToDie
+					timer.start()
+					vignette.visible = true
+
+func _on_Timer_timeout():
+	if !invincible and !dead:
+		setAnimation("Dead")
+		dead = true
+		controlLock = true
+		timer.stop()
+
+# pause menu buttons
+func _on_Continue_button_down():
+	pause()
+func _on_Restart_button_down():
+	pause()
+	respawn()
+func _on_Settings_button_down():
+	$Settings.visible = true
+func _on_Main_Menu_button_down():
+	get_tree().change_scene("res://Menu/Main.tscn")
