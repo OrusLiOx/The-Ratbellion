@@ -1,15 +1,17 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/RatStaticSheet.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/RatFurSheet.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TestRatSheet.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/wings.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Rat/RatStaticSheet.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Rat/RatFurSheet.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Rat/TestRatSheet.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Rat/wings.png" type="Texture" id=5]
 [ext_resource path="res://Fonts/rony-siswadi-15-font/Ronysiswadi15-51Dv8.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Menu/Settings.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=8]
-[ext_resource path="res://Sprites/SettingsIcon.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/HomeIcon.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/MenuThings/SettingsIcon.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/MenuThings/HomeIcon.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=11]
+[ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="Shader" id=60]
 code = "shader_type canvas_item;
@@ -246,6 +248,13 @@ font_data = ExtResource( 6 )
 [sub_resource type="Theme" id=62]
 default_font = SubResource( 63 )
 
+[sub_resource type="DynamicFont" id=64]
+size = 50
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=65]
+default_font = SubResource( 64 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 3
 script = ExtResource( 1 )
@@ -317,56 +326,81 @@ margin_bottom = -364.0
 rect_scale = Vector2( 30, 20 )
 color = Color( 0, 0, 0, 0.423529 )
 
+[node name="Chalkboard" type="Sprite" parent="Pause"]
+position = Vector2( 6, -16 )
+texture = ExtResource( 11 )
+
 [node name="Label" type="Label" parent="Pause"]
-margin_left = -80.0
-margin_top = -230.0
-margin_right = 81.0
-margin_bottom = -192.0
-theme = ExtResource( 8 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -276.0
+margin_top = -234.0
+margin_right = 279.0
+margin_bottom = -105.0
+theme = SubResource( 65 )
 text = "Paused"
+align = 1
 
 [node name="Buttons" type="Node2D" parent="Pause"]
 position = Vector2( 0, -110 )
 
 [node name="Continue" type="Button" parent="Pause/Buttons"]
-margin_left = -161.0
-margin_top = -30.0
-margin_right = 161.0
-margin_bottom = 56.0
+margin_left = -107.0
+margin_top = 15.0
+margin_right = 107.0
+margin_bottom = 71.0
 theme = ExtResource( 8 )
 text = "Continue"
+flat = true
 
 [node name="Restart" type="Button" parent="Pause/Buttons"]
-margin_left = -161.0
-margin_top = 70.0
-margin_right = 161.0
-margin_bottom = 156.0
+margin_left = -98.0
+margin_top = 87.0
+margin_right = 98.0
+margin_bottom = 140.0
 rect_pivot_offset = Vector2( -913, 0 )
 theme = ExtResource( 8 )
 text = "Restart"
+flat = true
 
 [node name="Settings" type="Button" parent="Pause/Buttons"]
-margin_left = 7.0
-margin_top = 170.0
-margin_right = 161.0
-margin_bottom = 256.0
+margin_left = 20.0
+margin_top = 158.0
+margin_right = 90.0
+margin_bottom = 221.0
 rect_pivot_offset = Vector2( -913, 0 )
 theme = ExtResource( 8 )
 icon = ExtResource( 9 )
+flat = true
 icon_align = 1
 expand_icon = true
 
 [node name="Main Menu" type="Button" parent="Pause/Buttons"]
-margin_left = -161.0
-margin_top = 170.0
-margin_right = -7.0
-margin_bottom = 256.0
+margin_left = -97.0
+margin_top = 153.0
+margin_right = -17.0
+margin_bottom = 222.0
 theme = ExtResource( 8 )
 icon = ExtResource( 10 )
+flat = true
 icon_align = 1
 expand_icon = true
 
 [node name="Settings" parent="." instance=ExtResource( 7 )]
+visible = false
+position = Vector2( -530, -240 )
+
+[node name="Complete" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -164.0
+margin_top = -294.0
+margin_right = 167.0
+margin_bottom = -256.0
+theme = ExtResource( 8 )
+text = "Level Compete!"
+align = 1
 
 [connection signal="area_entered" from="PlayerFeet" to="." method="_on_Feet_area_entered"]
 [connection signal="area_exited" from="PlayerFeet" to="." method="_on_Feet_area_exited"]
@@ -375,3 +409,4 @@ expand_icon = true
 [connection signal="button_down" from="Pause/Buttons/Restart" to="." method="_on_Restart_button_down"]
 [connection signal="button_down" from="Pause/Buttons/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="Pause/Buttons/Main Menu" to="." method="_on_Main_Menu_button_down"]
+[connection signal="close_settings" from="Settings" to="." method="_on_Settings_close_settings"]

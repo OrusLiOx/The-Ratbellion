@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wings.png-4eca9fcba20783ce139660dfc68c39c9.stex"
+path="res://.import/wings.png-d07d8dee2d2960a80cad476901025a7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/wings.png"
-dest_files=[ "res://.import/wings.png-4eca9fcba20783ce139660dfc68c39c9.stex" ]
+source_file="res://Sprites/Rat/wings.png"
+dest_files=[ "res://.import/wings.png-d07d8dee2d2960a80cad476901025a7d.stex" ]
 
 [params]
 

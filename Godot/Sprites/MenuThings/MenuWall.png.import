@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TestRatSheet.png-cbe8a2abdd4494a388e6c512e88cd087.stex"
+path="res://.import/MenuWall.png-3c21e013abd27964c83660a31728487e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TestRatSheet.png"
-dest_files=[ "res://.import/TestRatSheet.png-cbe8a2abdd4494a388e6c512e88cd087.stex" ]
+source_file="res://Sprites/MenuThings/MenuWall.png"
+dest_files=[ "res://.import/MenuWall.png-3c21e013abd27964c83660a31728487e.stex" ]
 
 [params]
 

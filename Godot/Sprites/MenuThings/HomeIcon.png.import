@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ratWalk.png-cc715115bfb79273f5837cc98602efae.stex"
+path="res://.import/HomeIcon.png-90ce3f62660d149df4c59fa796377e0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ratWalk.png"
-dest_files=[ "res://.import/ratWalk.png-cc715115bfb79273f5837cc98602efae.stex" ]
+source_file="res://Sprites/MenuThings/HomeIcon.png"
+dest_files=[ "res://.import/HomeIcon.png-90ce3f62660d149df4c59fa796377e0f.stex" ]
 
 [params]
 

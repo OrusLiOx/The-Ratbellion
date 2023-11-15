@@ -51,37 +51,25 @@ func _ready():
 	furAnim = $FurSprite
 	wings = $Wings
 	spritePlaying(true)
-	# collider stuff
+
 	bodyCol = $CollisionShape2D
 	feetCol = $PlayerFeet/CollisionShape2D
 	
 	vignette = $Camera2D/ColorRect
 	timer = $Timer
-	respawnPoint = position
 	
 	objective = $Objective
-	
-	$Pause.visible = false
-	$Settings.visible = false
-	objective.visible = false
-	# set cheat codes
-	cheatCode("RainbowRat", false)
-	cheatCode("Pidgeon", true)
-	cheatCode("RainbowJump", false)
-	cheatCode("LabRat", false)
-	cheatCode("Catnip", false)
-	cheatCode("GhostRat", false)
 	
 	rand = RandomNumberGenerator.new()
 	rand.randomize()
 	pickColor()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("Pause"):
 		pause()
 	# dying things
-	if Input.is_action_just_pressed("Restart"):
+	if !paused and Input.is_action_just_pressed("Restart"):
 		respawn()
 	if dead and grounded:
 		respawn()
@@ -225,34 +213,58 @@ func respawn():
 	position = respawnPoint
 	setAnimation("Idle")
 	pickColor()
+
 func pause():
 	paused = !paused
 	controlLock = paused
 	$Pause.visible = paused
-
-func startObjective(var text):
+	if !paused:
+		timer.paused = false
+		loadCheats()
+	else:
+		timer.paused = true
+func startLevel(var text):
+	# set defaults
+	$Pause.visible = false
+	$Settings.visible = false
+	objective.visible = true
+	$Complete.visible = false
+	controlLock = false
+	safeZonesTouched = 0
+	numGroundsTouched = 0
+	respawnPoint = position
+	
+	loadCheats()
+	# objective text
 	objective.text = text
 	yield(get_tree().create_timer(5.0), "timeout")
 	objective.modulate.a = 1
 	fadeObjective = true
 # cheat codes
-func cheatCode(var code, var active):
-	match code:
-		"RainbowRat" : 
-			rainbowRat = active
-		"Pidgeon" :
-			infiniteJump = active
-			wings.visible = active
-		"RainbowJump":
-			changeOnJump = active
-		"LabRat":
-			testAnims = active
-			staticAnim.visible = !active
-		"Catnip":
-			invincible = active
-		"GhostRat":
-			furAnim.visible = !active
-				
+func loadCheats():
+	var active
+	# catnip
+	active = CheatCodes.codes[0]
+	invincible = active
+	# pigeon
+	active = CheatCodes.codes[1]
+	infiniteJump = active
+	wings.visible = active
+	# rainbow rat
+	active = CheatCodes.codes[2]
+	rainbowRat = active
+	# rainbow jump
+	active = CheatCodes.codes[3]
+	changeOnJump = active
+	# ghost
+	active = CheatCodes.codes[4]
+	furAnim.visible = !active
+	# lab rat
+	active = CheatCodes.codes[5]
+	testAnims = active
+	staticAnim.visible = !active
+	if active and !rainbowRat:
+		furAnim.modulate = Color.white
 # collision triggers
 func _on_Feet_area_entered(area):
 	for g in area.get_groups():
@@ -268,6 +280,15 @@ func _on_Feet_area_entered(area):
 				vignette.visible = false
 			"Respawn":
 				respawnPoint = area.global_position
+			"End":
+				if paused:
+					pause()
+				$Complete.visible = true
+				controlLock = true
+				setAnimation("Idle")
+				yield(get_tree().create_timer(3.0), "timeout")
+				$Complete.visible = false
+				get_tree().change_scene("res://Menu/LevelSelect.tscn")
 func _on_Feet_area_exited(area):
 	for g in area.get_groups():
 		match(g):
@@ -284,6 +305,7 @@ func _on_Feet_area_exited(area):
 					timer.start()
 					vignette.visible = true
 
+# die
 func _on_Timer_timeout():
 	if !invincible and !dead:
 		setAnimation("Dead")
@@ -299,5 +321,10 @@ func _on_Restart_button_down():
 	respawn()
 func _on_Settings_button_down():
 	$Settings.visible = true
+	$Pause/Label.visible = false
+	$Pause/Buttons.visible = false
 func _on_Main_Menu_button_down():
 	get_tree().change_scene("res://Menu/Main.tscn")
+func _on_Settings_close_settings():
+	$Pause/Label.visible = true
+	$Pause/Buttons.visible = true

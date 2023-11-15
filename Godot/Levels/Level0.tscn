@@ -55,10 +55,6 @@ scale = Vector2( 220, 30 )
 position = Vector2( 5359, 573 )
 scale = Vector2( 10, 10 )
 
-[node name="LevelEndArea" parent="Terrain" instance=ExtResource( 9 )]
-position = Vector2( 8576, 158 )
-scale = Vector2( 50, 50 )
-
 [node name="Climb" type="Node2D" parent="Terrain"]
 
 [node name="StartClimb" parent="Terrain/Climb" instance=ExtResource( 3 )]
@@ -166,6 +162,9 @@ color = Color( 0, 0, 0, 1 )
 position = Vector2( 5871, -725.5 )
 texture = ExtResource( 10 )
 
+[node name="LevelEndArea" parent="." instance=ExtResource( 9 )]
+position = Vector2( 10703, -625 )
+
 [node name="CheckPoints" type="Node2D" parent="."]
 position = Vector2( 2548, -609 )
 
@@ -270,10 +269,25 @@ text = "You can still
 be seen while
 on a rope"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="End" type="Label" parent="Text"]
+margin_left = 10363.0
+margin_top = -824.0
+margin_right = 10610.0
+margin_bottom = -731.0
+rect_pivot_offset = Vector2( 587, 22 )
+theme = SubResource( 2 )
+text = "Checkered flags
+mark the end of
+the level"
+align = 1
 
 [node name="DeadRats" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 439, 0 )
+position = Vector2( 454, 0 )
 
 [connection signal="death" from="Player" to="." method="_on_Player_death"]

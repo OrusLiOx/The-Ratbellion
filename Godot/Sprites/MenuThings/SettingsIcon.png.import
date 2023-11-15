@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RatStaticSheet.png-430583df81529941376ab491b97ef332.stex"
+path="res://.import/SettingsIcon.png-62ee32928e1dad10d807eb8f397436c8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/RatStaticSheet.png"
-dest_files=[ "res://.import/RatStaticSheet.png-430583df81529941376ab491b97ef332.stex" ]
+source_file="res://Sprites/MenuThings/SettingsIcon.png"
+dest_files=[ "res://.import/SettingsIcon.png-62ee32928e1dad10d807eb8f397436c8.stex" ]
 
 [params]
 

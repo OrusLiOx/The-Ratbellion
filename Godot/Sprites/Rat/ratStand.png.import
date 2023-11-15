@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HomeIcon.png-068e7380a4e55835dc2554d320a6a70a.stex"
+path="res://.import/ratStand.png-1224be92586919f4c20ba5b11a7082fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/HomeIcon.png"
-dest_files=[ "res://.import/HomeIcon.png-068e7380a4e55835dc2554d320a6a70a.stex" ]
+source_file="res://Sprites/Rat/ratStand.png"
+dest_files=[ "res://.import/ratStand.png-1224be92586919f4c20ba5b11a7082fd.stex" ]
 
 [params]
 
