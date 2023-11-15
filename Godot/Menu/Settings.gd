@@ -95,17 +95,17 @@ func _on_CodeInput_text_changed():
 	codeInput.cursor_set_column(text.length())
 
 # toggle codes
-func _on_CatnipCheck_button_down():
+func _on_Catnip_toggle_code():
 	toggleCode(0)
-func _on_InfiniteJumpCheck_button_down():
+func _on_InfiniteJump_toggle_code():
 	toggleCode(1)
-func _on_RainbowRatCheck_button_down():
+func _on_RainbowRat_toggle_code():
 	toggleCode(2)
-func _on_ChangeOnJumpCheck_button_down():
+func _on_ChangeOnJump_toggle_code():
 	toggleCode(3)
-func _on_GhostCheck_button_down():
+func _on_Ghost_toggle_code():
 	toggleCode(4)
-func _on_LabRatCheck_button_down():
+func _on_LabRat_toggle_code():
 	toggleCode(5)
 
 func toggleCode(var id):

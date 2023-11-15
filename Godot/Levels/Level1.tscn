@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Level1.gd" type="Script" id=4]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Frame" type="Node2D" parent="Terrain"]
+
+[node name="Floor" parent="Terrain/Frame" instance=ExtResource( 3 )]
+position = Vector2( 2000, 10 )
+scale = Vector2( 200, 1 )
+
+[node name="Posts" type="Node2D" parent="Terrain/Frame"]
+
+[node name="Post1" parent="Terrain/Frame/Posts" instance=ExtResource( 3 )]
+position = Vector2( 1731, -137 )
+scale = Vector2( 1, 50 )
+
+[node name="Post2" parent="Terrain/Frame/Posts" instance=ExtResource( 3 )]
+position = Vector2( 3462, -137 )
+scale = Vector2( 1, 50 )
+
+[node name="Platforms" type="Node2D" parent="Terrain"]
+
+[node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="DeadRats" type="Node2D" parent="."]
+
+[node name="LevelEndArea" parent="." instance=ExtResource( 1 )]
+position = Vector2( -314, 619 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 39, -77 )

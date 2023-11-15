@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Rat/RatStaticSheet.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/MenuThings/HomeIcon.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=11]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Sprites/MenuThings/Chalk/PauseMenu.png" type="Texture" id=13]
 
 [sub_resource type="Shader" id=60]
 code = "shader_type canvas_item;
@@ -268,6 +269,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
+visible = false
 modulate = Color( 1, 1, 1, 0.643137 )
 material = SubResource( 61 )
 margin_left = -514.0
@@ -317,6 +319,7 @@ theme = SubResource( 62 )
 text = "Objective"
 
 [node name="Pause" type="Node2D" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
 margin_left = -594.0
@@ -330,7 +333,9 @@ color = Color( 0, 0, 0, 0.423529 )
 position = Vector2( 6, -16 )
 texture = ExtResource( 11 )
 
-[node name="Label" type="Label" parent="Pause"]
+[node name="Main" type="Node2D" parent="Pause"]
+
+[node name="Label" type="Label" parent="Pause/Main"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -276.0
@@ -341,33 +346,33 @@ theme = SubResource( 65 )
 text = "Paused"
 align = 1
 
-[node name="Buttons" type="Node2D" parent="Pause"]
+[node name="Buttons" type="Node2D" parent="Pause/Main"]
 position = Vector2( 0, -110 )
 
-[node name="Continue" type="Button" parent="Pause/Buttons"]
-margin_left = -107.0
+[node name="Continue" type="Button" parent="Pause/Main/Buttons"]
+margin_left = -112.0
 margin_top = 15.0
-margin_right = 107.0
+margin_right = 115.0
 margin_bottom = 71.0
 theme = ExtResource( 8 )
 text = "Continue"
 flat = true
 
-[node name="Restart" type="Button" parent="Pause/Buttons"]
-margin_left = -98.0
+[node name="Restart" type="Button" parent="Pause/Main/Buttons"]
+margin_left = -108.0
 margin_top = 87.0
-margin_right = 98.0
+margin_right = 110.0
 margin_bottom = 140.0
 rect_pivot_offset = Vector2( -913, 0 )
 theme = ExtResource( 8 )
-text = "Restart"
+text = "Respawn"
 flat = true
 
-[node name="Settings" type="Button" parent="Pause/Buttons"]
-margin_left = 20.0
-margin_top = 158.0
-margin_right = 90.0
-margin_bottom = 221.0
+[node name="Settings" type="Button" parent="Pause/Main/Buttons"]
+margin_left = 15.0
+margin_top = 156.0
+margin_right = 96.0
+margin_bottom = 225.0
 rect_pivot_offset = Vector2( -913, 0 )
 theme = ExtResource( 8 )
 icon = ExtResource( 9 )
@@ -375,16 +380,20 @@ flat = true
 icon_align = 1
 expand_icon = true
 
-[node name="Main Menu" type="Button" parent="Pause/Buttons"]
-margin_left = -97.0
-margin_top = 153.0
-margin_right = -17.0
-margin_bottom = 222.0
+[node name="Main Menu" type="Button" parent="Pause/Main/Buttons"]
+margin_left = -93.0
+margin_top = 156.0
+margin_right = -13.0
+margin_bottom = 225.0
 theme = ExtResource( 8 )
 icon = ExtResource( 10 )
 flat = true
 icon_align = 1
 expand_icon = true
+
+[node name="PauseMenu" type="Sprite" parent="Pause/Main/Buttons"]
+position = Vector2( 2, 119 )
+texture = ExtResource( 13 )
 
 [node name="Settings" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -405,8 +414,8 @@ align = 1
 [connection signal="area_entered" from="PlayerFeet" to="." method="_on_Feet_area_entered"]
 [connection signal="area_exited" from="PlayerFeet" to="." method="_on_Feet_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="button_down" from="Pause/Buttons/Continue" to="." method="_on_Continue_button_down"]
-[connection signal="button_down" from="Pause/Buttons/Restart" to="." method="_on_Restart_button_down"]
-[connection signal="button_down" from="Pause/Buttons/Settings" to="." method="_on_Settings_button_down"]
-[connection signal="button_down" from="Pause/Buttons/Main Menu" to="." method="_on_Main_Menu_button_down"]
+[connection signal="button_down" from="Pause/Main/Buttons/Continue" to="." method="_on_Continue_button_down"]
+[connection signal="button_down" from="Pause/Main/Buttons/Restart" to="." method="_on_Restart_button_down"]
+[connection signal="button_down" from="Pause/Main/Buttons/Settings" to="." method="_on_Settings_button_down"]
+[connection signal="button_down" from="Pause/Main/Buttons/Main Menu" to="." method="_on_Main_Menu_button_down"]
 [connection signal="close_settings" from="Settings" to="." method="_on_Settings_close_settings"]

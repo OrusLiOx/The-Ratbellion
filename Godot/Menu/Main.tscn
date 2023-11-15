@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Sprites/MenuThings/SettingsIcon.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/MenuThings/MenuWall.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/MenuThings/Chalk/MainMenuChalk.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -14,6 +15,9 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 3 )
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/CloseBox.png-4ce66ce204fe973db97f67a0b8a9f15a.stex"
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -29,7 +33,12 @@ position = Vector2( 6, -16 )
 texture = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]
+visible = false
 position = Vector2( 513, 301 )
+
+[node name="MainMenuChalk" type="Sprite" parent="Main"]
+position = Vector2( -488.5, -313.5 )
+texture = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="Main"]
 anchor_left = 0.5
@@ -48,8 +57,8 @@ position = Vector2( -513, -301 )
 [node name="Settings" type="Button" parent="Main/Buttons"]
 margin_left = 339.0
 margin_top = -251.0
-margin_right = 427.0
-margin_bottom = -174.0
+margin_right = 429.0
+margin_bottom = -172.0
 focus_mode = 0
 theme = ExtResource( 1 )
 enabled_focus_mode = 0
@@ -59,10 +68,10 @@ icon_align = 1
 expand_icon = true
 
 [node name="Start" type="Button" parent="Main/Buttons"]
-margin_left = -355.0
-margin_top = 147.0
-margin_right = -33.0
-margin_bottom = 233.0
+margin_left = -332.0
+margin_top = 162.0
+margin_right = -56.0
+margin_bottom = 216.0
 focus_mode = 0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -72,10 +81,10 @@ text = "Level Select"
 flat = true
 
 [node name="Controls" type="Button" parent="Main/Buttons"]
-margin_left = 27.0
-margin_top = 147.0
-margin_right = 349.0
-margin_bottom = 233.0
+margin_left = 43.0
+margin_top = 155.0
+margin_right = 324.0
+margin_bottom = 216.0
 focus_mode = 0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -89,7 +98,6 @@ visible = false
 position = Vector2( -526, -241 )
 
 [node name="Controls" type="Node2D" parent="."]
-visible = false
 
 [node name="Title" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -103,10 +111,10 @@ text = "Controls"
 align = 1
 
 [node name="CloseControls" type="Button" parent="Controls"]
-margin_left = 369.0
-margin_top = -243.0
-margin_right = 419.0
-margin_bottom = -193.0
+margin_left = 366.0
+margin_top = -247.0
+margin_right = 425.0
+margin_bottom = -201.0
 rect_pivot_offset = Vector2( -1528, 21 )
 focus_mode = 0
 theme = ExtResource( 1 )
@@ -123,12 +131,16 @@ margin_right = 730.0
 margin_bottom = 316.0
 theme = ExtResource( 1 )
 text = "run - a/d
-climb -w/s
+climb - w/s
 jump - space
 drop - s+space
 
 pause - esc
-restart - r"
+respawn - r"
+
+[node name="CloseBox" type="Sprite" parent="Controls"]
+position = Vector2( 395, -224 )
+texture = SubResource( 4 )
 
 [connection signal="button_down" from="Main/Buttons/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="Main/Buttons/Start" to="." method="_on_Start_button_down"]

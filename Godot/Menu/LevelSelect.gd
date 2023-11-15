@@ -13,5 +13,9 @@ func _ready():
 
 func _on_Tutorial_button_down():
 	get_tree().change_scene("res://Levels/Level0.tscn")
+func _on_Level1_button_down():
+	get_tree().change_scene("res://Levels/Level1.tscn")
 func _on_Main_button_down():
 	get_tree().change_scene("res://Menu/Main.tscn")
+
+

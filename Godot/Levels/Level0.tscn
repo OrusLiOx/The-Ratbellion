@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Levels/Level0.png" type="Texture" id=10]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Sprites/Levels/Level0BG.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 11 )
@@ -32,15 +33,15 @@ position = Vector2( -258, -111 )
 scale = Vector2( 300, 80 )
 
 [node name="Safe2" parent="Terrain/Safe" instance=ExtResource( 5 )]
-position = Vector2( 6690, 50 )
-scale = Vector2( 20, 80 )
+position = Vector2( 6643, 47 )
+scale = Vector2( 15.3, 80 )
 
 [node name="Safe4" parent="Terrain/Safe" instance=ExtResource( 5 )]
-position = Vector2( 7959, -516 )
+position = Vector2( 7960, -505 )
 scale = Vector2( 130, 50 )
 
 [node name="Safe3" parent="Terrain/Safe" instance=ExtResource( 5 )]
-position = Vector2( 7083, 656 )
+position = Vector2( 6994, 734 )
 scale = Vector2( 20, 20 )
 
 [node name="Safe5" parent="Terrain/Safe" instance=ExtResource( 5 )]
@@ -48,12 +49,20 @@ position = Vector2( 4053, 349 )
 scale = Vector2( 10, 10 )
 
 [node name="Safe6" parent="Terrain/Safe" instance=ExtResource( 5 )]
-position = Vector2( 4682, -39 )
+position = Vector2( 4583, -35 )
 scale = Vector2( 220, 30 )
 
 [node name="Safe7" parent="Terrain/Safe" instance=ExtResource( 5 )]
 position = Vector2( 5359, 573 )
 scale = Vector2( 10, 10 )
+
+[node name="Safe8" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 6810, 332 )
+scale = Vector2( 8, 6.8 )
+
+[node name="Safe9" parent="Terrain/Safe" instance=ExtResource( 5 )]
+position = Vector2( 6810, 62 )
+scale = Vector2( 8, 6.8 )
 
 [node name="Climb" type="Node2D" parent="Terrain"]
 
@@ -126,7 +135,7 @@ position = Vector2( 8290, 384 )
 scale = Vector2( 120, 40 )
 
 [node name="Block8" parent="Terrain/Solid" instance=ExtResource( 1 )]
-position = Vector2( 4044.5, -39 )
+position = Vector2( 4044.5, -35 )
 scale = Vector2( 31.75, 30 )
 
 [node name="Block3" parent="Terrain/Solid" instance=ExtResource( 1 )]
@@ -158,7 +167,11 @@ margin_right = 12982.0
 margin_bottom = 1124.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="LevelBG" type="Sprite" parent="."]
+position = Vector2( 7445, -441.5 )
+texture = ExtResource( 12 )
+
+[node name="LevelSprite" type="Sprite" parent="."]
 position = Vector2( 5871, -725.5 )
 texture = ExtResource( 10 )
 
@@ -247,10 +260,10 @@ spawn point"
 align = 1
 
 [node name="danger" type="Label" parent="Text"]
-margin_left = 5327.0
-margin_top = -216.0
-margin_right = 5574.0
-margin_bottom = -123.0
+margin_left = 4869.0
+margin_top = -211.0
+margin_right = 5116.0
+margin_bottom = -118.0
 rect_pivot_offset = Vector2( 587, 22 )
 theme = SubResource( 2 )
 text = "A cat will catch you
@@ -259,10 +272,10 @@ open too long"
 align = 1
 
 [node name="climb danger" type="Label" parent="Text"]
-margin_left = 9183.0
-margin_top = -221.0
-margin_right = 9430.0
-margin_bottom = -128.0
+margin_left = 9122.0
+margin_top = -176.0
+margin_right = 9369.0
+margin_bottom = -83.0
 rect_pivot_offset = Vector2( 587, 22 )
 theme = SubResource( 2 )
 text = "You can still 

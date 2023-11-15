@@ -222,6 +222,9 @@ func pause():
 		timer.paused = false
 		loadCheats()
 	else:
+		$Pause/Main.visible = true
+		$Settings/Main.visible = true
+		$Settings/CheatCodes.visible = false
 		timer.paused = true
 func startLevel(var text):
 	# set defaults
@@ -321,10 +324,8 @@ func _on_Restart_button_down():
 	respawn()
 func _on_Settings_button_down():
 	$Settings.visible = true
-	$Pause/Label.visible = false
-	$Pause/Buttons.visible = false
+	$Pause/Main.visible = false
 func _on_Main_Menu_button_down():
 	get_tree().change_scene("res://Menu/Main.tscn")
 func _on_Settings_close_settings():
-	$Pause/Label.visible = true
-	$Pause/Buttons.visible = true
+	$Pause/Main.visible = true

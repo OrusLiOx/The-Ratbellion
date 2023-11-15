@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Menu/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/MenuThings/MenuWall.png" type="Texture" id=5]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Sprites/MenuThings/Chalk/CornerBox.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -31,18 +32,30 @@ margin_left = -127.0
 margin_top = -145.0
 margin_right = 128.0
 margin_bottom = -60.0
-rect_pivot_offset = Vector2( -957, 0 )
+rect_pivot_offset = Vector2( -398, -30 )
 focus_mode = 0
 theme = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "Tutorial"
 flat = true
 
+[node name="Level1" type="Button" parent="."]
+margin_left = -127.0
+margin_top = -45.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -957, 0 )
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Level 1"
+flat = true
+
 [node name="Main" type="Button" parent="."]
-margin_left = 346.0
-margin_top = -245.0
-margin_right = 416.0
-margin_bottom = -173.0
+margin_left = 338.0
+margin_top = -253.0
+margin_right = 428.0
+margin_bottom = -175.0
 focus_mode = 0
 theme = ExtResource( 2 )
 enabled_focus_mode = 0
@@ -61,5 +74,10 @@ theme = SubResource( 4 )
 text = "Level  select"
 align = 1
 
+[node name="CornerBox" type="Sprite" parent="."]
+position = Vector2( 382.5, -214 )
+texture = ExtResource( 7 )
+
 [connection signal="button_down" from="Tutorial" to="." method="_on_Tutorial_button_down"]
+[connection signal="button_down" from="Level1" to="." method="_on_Level1_button_down"]
 [connection signal="button_down" from="Main" to="." method="_on_Main_button_down"]
