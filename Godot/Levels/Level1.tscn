@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -29,6 +29,9 @@
 [ext_resource path="res://Sprites/Levels/plant.png" type="Texture" id=27]
 [ext_resource path="res://Sprites/Levels/tree.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/Levels/treeLeaves.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Levels/signs/signPost.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Levels/signs/danger.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Levels/signs/Arrow.png" type="Texture" id=32]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 4 )
@@ -40,7 +43,6 @@ objective = "Unlock the gate"
 [node name="Tree" type="Node2D" parent="Terrain"]
 
 [node name="safeAreas" type="Node2D" parent="Terrain/Tree"]
-visible = false
 
 [node name="SafeArea6" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
 position = Vector2( 566, -5055 )
@@ -53,7 +55,7 @@ rotation = 0.994838
 scale = Vector2( 20, 95 )
 
 [node name="SafeArea8" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
-position = Vector2( 1290, -5740 )
+position = Vector2( 1290, -5738 )
 rotation = 1.5708
 scale = Vector2( 5, 50 )
 
@@ -329,7 +331,7 @@ position = Vector2( 2744, -4900 )
 scale = Vector2( 10, 9 )
 
 [node name="ClimbArea5" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
-position = Vector2( 2456, -4575 )
+position = Vector2( 2456, -4567 )
 scale = Vector2( 2, 77 )
 
 [node name="OneWayTerrain7" parent="Terrain/Fence/section2" instance=ExtResource( 7 )]
@@ -752,6 +754,113 @@ margin_right = 3361.0
 margin_bottom = 1161.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="signs" type="Node2D" parent="Background"]
+
+[node name="SignPost" type="Sprite" parent="Background/signs"]
+position = Vector2( 699, -22 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost"]
+position = Vector2( 0, -65 )
+rotation = -1.5708
+texture = ExtResource( 32 )
+
+[node name="SignPost2" type="Sprite" parent="Background/signs"]
+position = Vector2( -312, -22 )
+texture = ExtResource( 30 )
+
+[node name="Danger" type="Sprite" parent="Background/signs/SignPost2"]
+position = Vector2( 0, -42 )
+texture = ExtResource( 31 )
+
+[node name="SignPost3" type="Sprite" parent="Background/signs"]
+position = Vector2( 432, -1625 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost3"]
+position = Vector2( 2, -38 )
+rotation = -0.785398
+texture = ExtResource( 32 )
+
+[node name="SignPost4" type="Sprite" parent="Background/signs"]
+position = Vector2( 1769, -1924 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost4"]
+position = Vector2( 0, -65 )
+rotation = -1.5708
+texture = ExtResource( 32 )
+
+[node name="SignPost5" type="Sprite" parent="Background/signs"]
+position = Vector2( 2846, -3818 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost5"]
+position = Vector2( -3, -40 )
+rotation = -2.35619
+texture = ExtResource( 32 )
+
+[node name="SignPost6" type="Sprite" parent="Background/signs"]
+position = Vector2( 992, -4411 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost6"]
+position = Vector2( 0, -65 )
+rotation = -1.5708
+texture = ExtResource( 32 )
+
+[node name="SignPost7" type="Sprite" parent="Background/signs"]
+position = Vector2( 1156, -4236 )
+rotation = -1.5708
+texture = ExtResource( 30 )
+
+[node name="Danger" type="Sprite" parent="Background/signs/SignPost7"]
+position = Vector2( 0, -42 )
+texture = ExtResource( 31 )
+
+[node name="SignPost8" type="Sprite" parent="Background/signs"]
+position = Vector2( 1592, -5812 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost8"]
+position = Vector2( 2, -38 )
+rotation = -0.785398
+texture = ExtResource( 32 )
+
+[node name="SignPost9" type="Sprite" parent="Background/signs"]
+position = Vector2( 9639, -6872 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost9"]
+position = Vector2( 11, -25 )
+rotation = 0.785398
+texture = ExtResource( 32 )
+
+[node name="SignPost10" type="Sprite" parent="Background/signs"]
+position = Vector2( 10798, -4765.5 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost10"]
+position = Vector2( 2, -34 )
+texture = ExtResource( 32 )
+
+[node name="SignPost11" type="Sprite" parent="Background/signs"]
+position = Vector2( 12396, -4765.5 )
+texture = ExtResource( 30 )
+
+[node name="Arrow" type="Sprite" parent="Background/signs/SignPost11"]
+position = Vector2( 2, -34 )
+rotation = 3.14159
+texture = ExtResource( 32 )
+
+[node name="SignPost12" type="Sprite" parent="Background/signs"]
+position = Vector2( 9484, -5712.5 )
+texture = ExtResource( 30 )
+
+[node name="Danger" type="Sprite" parent="Background/signs/SignPost12"]
+position = Vector2( 0, -42 )
+texture = ExtResource( 31 )
+
 [node name="CheckPoints" type="Node2D" parent="."]
 
 [node name="RespawnZone2" parent="CheckPoints" instance=ExtResource( 6 )]
@@ -766,7 +875,7 @@ position = Vector2( 1833, -3796 )
 position = Vector2( 11719, -4743 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 396, 0 )
+position = Vector2( 322, 0 )
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( 1178, -4190 )

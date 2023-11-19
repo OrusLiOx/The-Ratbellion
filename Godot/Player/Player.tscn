@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Rat/RatStaticSheet.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Sounds/SoundEffect/step.wav" type="AudioStream" id=16]
 [ext_resource path="res://Sounds/SoundEffect/Checkpoint.wav" type="AudioStream" id=17]
 [ext_resource path="res://Sounds/SoundEffect/Win.wav" type="AudioStream" id=18]
+[ext_resource path="res://Sounds/SoundEffect/Slash.wav" type="AudioStream" id=19]
 
 [sub_resource type="AtlasTexture" id=70]
 atlas = ExtResource( 14 )
@@ -349,6 +350,7 @@ script = ExtResource( 1 )
 step = ExtResource( 16 )
 checkpoint = ExtResource( 17 )
 win = ExtResource( 18 )
+slash = ExtResource( 19 )
 
 [node name="CatPaw" type="AnimatedSprite" parent="."]
 visible = false
@@ -370,15 +372,14 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
-visible = false
 modulate = Color( 1, 1, 1, 0.643137 )
 material = SubResource( 61 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -512.0
 margin_top = -300.0
-margin_right = 505.0
-margin_bottom = 305.0
+margin_right = 512.0
+margin_bottom = 306.0
 
 [node name="Wings" type="AnimatedSprite" parent="."]
 position = Vector2( -0.5, -16.5 )

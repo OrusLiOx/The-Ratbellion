@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var step : AudioStream
 export var checkpoint : AudioStream
 export var win : AudioStream
+export var slash : AudioStream
 
 var speed = 500
 var jumpPower =-1000
@@ -87,7 +88,7 @@ func _physics_process(_delta):
 		respawn()
 	# things based on timer
 	if !timer.is_stopped():
-		vignette.modulate.a = 1.0/(timer.time_left+1.3) #(1.0-timer.time_left/5.0) *164.0/255.0
+		vignette.modulate.a = 1.0/(timer.time_left+.8) #(1.0-timer.time_left/5.0) *164.0/255.0
 		if timer.time_left < .7 and !paw.visible:
 			pawAppear()
 	if fadeObjective:
@@ -349,8 +350,10 @@ func _on_Feet_area_exited(area):
 # die
 func _on_Timer_timeout():
 	if !invincible and !dead:
+		playSound(slash)
 		playAnim("Swipe")
 		setAnimation("Dead")
+		climbing = false
 		dead = true
 		controlLock = true
 		timer.stop()
