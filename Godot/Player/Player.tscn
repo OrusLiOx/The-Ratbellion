@@ -353,7 +353,6 @@ win = ExtResource( 18 )
 slash = ExtResource( 19 )
 
 [node name="CatPaw" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( -16, -40 )
 frames = SubResource( 66 )
 animation = "Swipe"
@@ -378,8 +377,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -512.0
 margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 306.0
+margin_right = 513.0
+margin_bottom = 300.0
 
 [node name="Wings" type="AnimatedSprite" parent="."]
 position = Vector2( -0.5, -16.5 )
