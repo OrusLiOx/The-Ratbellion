@@ -1,6 +1,6 @@
 # The Ratbellion
 
-Godot Wild Jam 63 submissino
+Godot Wild Jam 63 submission
 
 Play here: https://orusliox.itch.io/the-ratbellion
 
