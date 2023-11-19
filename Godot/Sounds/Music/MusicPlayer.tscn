@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sounds/Music/The_Ratbellion_Bassoon.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Music/The_Ratbellion_Drumline.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Music/MusicPlayer.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/Music/The_Ratbellion_Flute.wav" type="AudioStream" id=4]
+
+[node name="MusicPlayer" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Flute" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 1.0
+bus = "Music"
+
+[node name="Bassoon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 1.0
+bus = "Music"
+
+[node name="Drum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 1.0
+bus = "Music"

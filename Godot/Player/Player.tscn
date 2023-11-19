@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Rat/RatStaticSheet.png" type="Texture" id=2]
@@ -13,6 +13,93 @@
 [ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=11]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Sprites/MenuThings/Chalk/PauseMenu.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/CatPaw.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/CatPawFur.png" type="Texture" id=15]
+[ext_resource path="res://Sounds/SoundEffect/step.wav" type="AudioStream" id=16]
+[ext_resource path="res://Sounds/SoundEffect/Checkpoint.wav" type="AudioStream" id=17]
+[ext_resource path="res://Sounds/SoundEffect/Win.wav" type="AudioStream" id=18]
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 14 )
+region = Rect2( 561, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 14 )
+region = Rect2( 1122, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 14 )
+region = Rect2( 1683, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 14 )
+region = Rect2( 2244, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 14 )
+region = Rect2( 2805, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 280, 10 )
+
+[sub_resource type="SpriteFrames" id=66]
+animations = [ {
+"frames": [ SubResource( 70 ), SubResource( 71 ) ],
+"loop": false,
+"name": "Appear",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 69 ) ],
+"loop": false,
+"name": "Swipe",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 15 )
+region = Rect2( 561, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 15 )
+region = Rect2( 1122, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 15 )
+region = Rect2( 1683, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 15 )
+region = Rect2( 2244, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 15 )
+region = Rect2( 2805, 0, 561, 127 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 15 )
+region = Rect2( 2730, 0, 105, 3 )
+
+[sub_resource type="SpriteFrames" id=82]
+animations = [ {
+"frames": [ SubResource( 76 ), SubResource( 77 ) ],
+"loop": false,
+"name": "Appear",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 83 ) ],
+"loop": false,
+"name": "Swipe",
+"speed": 10.0
+} ]
 
 [sub_resource type="Shader" id=60]
 code = "shader_type canvas_item;
@@ -236,10 +323,10 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=67]
 extents = Vector2( 8.77785, 6.7507 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=68]
 extents = Vector2( 8.91021, 10 )
 
 [sub_resource type="DynamicFont" id=63]
@@ -257,8 +344,22 @@ font_data = ExtResource( 12 )
 default_font = SubResource( 64 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 3
+collision_mask = 6
 script = ExtResource( 1 )
+step = ExtResource( 16 )
+checkpoint = ExtResource( 17 )
+win = ExtResource( 18 )
+
+[node name="CatPaw" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -16, -40 )
+frames = SubResource( 66 )
+animation = "Swipe"
+
+[node name="Fur" type="AnimatedSprite" parent="CatPaw"]
+modulate = Color( 0.176471, 0.176471, 0.176471, 1 )
+frames = SubResource( 82 )
+animation = "Swipe"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -0.5, -16.5 )
@@ -272,10 +373,12 @@ drag_margin_bottom = 0.0
 visible = false
 modulate = Color( 1, 1, 1, 0.643137 )
 material = SubResource( 61 )
-margin_left = -514.0
-margin_top = -302.0
-margin_right = 515.0
-margin_bottom = 303.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 505.0
+margin_bottom = 305.0
 
 [node name="Wings" type="AnimatedSprite" parent="."]
 position = Vector2( -0.5, -16.5 )
@@ -283,7 +386,7 @@ frames = SubResource( 57 )
 animation = "One"
 
 [node name="FurSprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.20137, 0.265465, 0.324219, 1 )
+modulate = Color( 0.261719, 0.217151, 0.169708, 1 )
 position = Vector2( -0.5, -16.5 )
 frames = SubResource( 29 )
 animation = "Run"
@@ -296,7 +399,7 @@ animation = "Run"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, -19.22 )
 scale = Vector2( 1.481, 2.856 )
-shape = SubResource( 5 )
+shape = SubResource( 67 )
 
 [node name="PlayerFeet" type="Area2D" parent="."]
 position = Vector2( -0.5, -16.5 )
@@ -305,16 +408,16 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerFeet"]
 position = Vector2( 0, 14.5 )
 scale = Vector2( 1.4, 0.25 )
-shape = SubResource( 3 )
+shape = SubResource( 68 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Objective" type="RichTextLabel" parent="."]
-margin_left = -505.0
-margin_top = -312.0
-margin_right = 465.0
-margin_bottom = 136.0
+[node name="Objective" type="Label" parent="."]
+margin_left = -502.0
+margin_top = -305.0
+margin_right = 441.0
+margin_bottom = -270.0
 theme = SubResource( 62 )
 text = "Objective"
 
@@ -410,6 +513,12 @@ margin_bottom = -256.0
 theme = ExtResource( 8 )
 text = "Level Compete!"
 align = 1
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = 1.0
+pitch_scale = 1.5
+bus = "Sfx"
 
 [connection signal="area_entered" from="PlayerFeet" to="." method="_on_Feet_area_entered"]
 [connection signal="area_exited" from="PlayerFeet" to="." method="_on_Feet_area_exited"]

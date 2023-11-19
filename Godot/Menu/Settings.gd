@@ -36,7 +36,7 @@ func _on_Close_button_down():
 		emit_signal("close_settings")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if $CheatCodes.visible and Input.is_action_just_pressed("Enter"):
 		codeInput.text = codeInput.text.substr(0,codeInput.text.length()-1)
 		processCodeEntry()
@@ -48,7 +48,7 @@ func _process(delta):
 # CHEAT CODES
 # activate/deactivate code
 func setCode(var id, var active):
-	CheatCodes.codes[id] = active
+	Globals.codes[id] = active
 	if active:
 		codeHandlers[id].get_child(0).text = "x"
 	else:
@@ -62,7 +62,7 @@ func processCodeEntry():
 		for key in codeToId:
 			index = codeToId[key]
 			setCode(index, true)
-			CheatCodes.foundCodes[index] = true
+			Globals.foundCodes[index] = true
 			codeHandlers[index].text = key
 			codeHandlers[index].get_child(0).visible = true
 			codeHandlers[index].get_child(1).visible = true
@@ -78,7 +78,7 @@ func processCodeEntry():
 	
 	if index != -1:
 		setCode(index, true)
-		CheatCodes.foundCodes[index] = true
+		Globals.foundCodes[index] = true
 		codeHandlers[index].text = code
 		codeHandlers[index].get_child(0).visible = true
 		codeHandlers[index].get_child(1).visible = true
@@ -93,6 +93,7 @@ func _on_CodeInput_text_changed():
 	var text =  codeInput.text
 	codeInput.text = text.substr(0,15)
 	codeInput.cursor_set_column(text.length())
+	$CheatCodes/TypeCode.visible = !$CheatCodes/InvalidCode.visible and codeInput.text==""
 
 # toggle codes
 func _on_Catnip_toggle_code():
@@ -109,12 +110,15 @@ func _on_LabRat_toggle_code():
 	toggleCode(5)
 
 func toggleCode(var id):
-	setCode(id, !CheatCodes.codes[id])
+	setCode(id, !Globals.codes[id])
 
 # open cheat code menu
 func _on_OpenCheatCodes_button_down():
 	# set visibility
 	$Main.visible = false
+	codeInput.text = ""
+	$CheatCodes/TypeCode.visible = true
+	$CheatCodes/InvalidCode.visible = false
 	for key in codeToId:
 		setCodeHandler(key)
 	
@@ -123,7 +127,7 @@ func _on_OpenCheatCodes_button_down():
 func setCodeHandler(var code):
 	var id = codeToId[code]
 	# if found, code text and check box visible
-	if CheatCodes.foundCodes[id]:
+	if Globals.foundCodes[id]:
 		codeHandlers[id].get_child(0).visible = true
 		codeHandlers[id].get_child(1).visible = true
 		codeHandlers[id].text = code
@@ -133,7 +137,7 @@ func setCodeHandler(var code):
 		codeHandlers[id].text = "???"
 	
 	# if active, check box checked
-	if CheatCodes.codes[id]:
+	if Globals.codes[id]:
 		codeHandlers[id].get_child(0).text= "x"
 	else:
 		codeHandlers[id].get_child(0).text= ""

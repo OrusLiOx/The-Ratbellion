@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Menu/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Sprites/MenuThings/MenuWall.png" type="Texture" id=5]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Sprites/MenuThings/Chalk/CornerBox.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/MenuThings/Chalk/Settings.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/MenuThings/rats.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -28,10 +30,10 @@ position = Vector2( 6, -16 )
 texture = ExtResource( 4 )
 
 [node name="Tutorial" type="Button" parent="."]
-margin_left = -127.0
-margin_top = -145.0
-margin_right = 128.0
-margin_bottom = -60.0
+margin_left = -151.0
+margin_top = -129.0
+margin_right = 150.0
+margin_bottom = -77.0
 rect_pivot_offset = Vector2( -398, -30 )
 focus_mode = 0
 theme = ExtResource( 2 )
@@ -40,10 +42,10 @@ text = "Tutorial"
 flat = true
 
 [node name="Level1" type="Button" parent="."]
-margin_left = -127.0
-margin_top = -45.0
-margin_right = 128.0
-margin_bottom = 40.0
+margin_left = -147.0
+margin_top = -29.0
+margin_right = 149.0
+margin_bottom = 21.0
 rect_pivot_offset = Vector2( -957, 0 )
 focus_mode = 0
 theme = ExtResource( 2 )
@@ -77,6 +79,21 @@ align = 1
 [node name="CornerBox" type="Sprite" parent="."]
 position = Vector2( 382.5, -214 )
 texture = ExtResource( 7 )
+
+[node name="TutorialBox2" type="Sprite" parent="."]
+position = Vector2( 0, -13 )
+rotation = -3.14159
+texture = ExtResource( 8 )
+vframes = 4
+
+[node name="TutorialBox" type="Sprite" parent="."]
+position = Vector2( 0, -95 )
+texture = ExtResource( 8 )
+vframes = 4
+
+[node name="Rats" type="Sprite" parent="."]
+position = Vector2( 0, 238.5 )
+texture = ExtResource( 9 )
 
 [connection signal="button_down" from="Tutorial" to="." method="_on_Tutorial_button_down"]
 [connection signal="button_down" from="Level1" to="." method="_on_Level1_button_down"]

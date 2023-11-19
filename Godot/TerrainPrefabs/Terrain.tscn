@@ -11,14 +11,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
+[node name="Area2D" type="Area2D" parent="." groups=["Terrain"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
-color = Color( 0, 0, 0, 0.392157 )
-
-[node name="Area2D" type="Area2D" parent="." groups=["Terrain"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+color = Color( 0, 0, 0, 1 )

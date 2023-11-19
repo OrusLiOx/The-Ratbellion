@@ -6,7 +6,7 @@
 [ext_resource path="res://TerrainPrefabs/OneWayTerrain.tscn" type="PackedScene" id=4]
 [ext_resource path="res://TerrainPrefabs/SafeArea.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/DeadRat.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Levels/Level0.gd" type="Script" id=7]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=7]
 [ext_resource path="res://TerrainPrefabs/RespawnZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Levels/Level0.png" type="Texture" id=10]
@@ -22,8 +22,10 @@ default_font = SubResource( 1 )
 [node name="Level0" type="Node2D"]
 script = ExtResource( 7 )
 deadrat = ExtResource( 6 )
+objective = "Reach the end of the training course"
 
 [node name="Terrain" type="Node2D" parent="."]
+visible = false
 position = Vector2( 2548, -609 )
 
 [node name="Safe" type="Node2D" parent="Terrain"]
@@ -301,6 +303,6 @@ align = 1
 [node name="DeadRats" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 454, 0 )
+position = Vector2( 320, 0 )
 
 [connection signal="death" from="Player" to="." method="_on_Player_death"]

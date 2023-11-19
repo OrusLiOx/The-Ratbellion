@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Menu/Settings.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Sprites/MenuThings/Chalk/CloseBox.png" type="Texture" id=4]
+[ext_resource path="res://Menu/Slider.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/MenuThings/Chalk/CheatCodeEnterBox.png" type="Texture" id=6]
 [ext_resource path="res://Menu/CheatCodeLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/MenuThings/Chalk/Settings.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -19,6 +21,11 @@ position = Vector2( 38, 62 )
 script = ExtResource( 2 )
 
 [node name="Main" type="Node2D" parent="."]
+visible = false
+
+[node name="Settings" type="Sprite" parent="Main"]
+position = Vector2( 532, 246 )
+texture = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="Main"]
 anchor_left = 0.5
@@ -32,15 +39,37 @@ text = "Settings"
 align = 1
 
 [node name="OpenCheatCodes" type="Button" parent="Main"]
-margin_left = 387.0
-margin_top = 112.0
-margin_right = 673.0
-margin_bottom = 156.0
+margin_left = 383.0
+margin_top = 107.0
+margin_right = 679.0
+margin_bottom = 157.0
 focus_mode = 0
 theme = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "Cheat Codes"
 flat = true
+
+[node name="Label" parent="Main" instance=ExtResource( 5 )]
+margin_left = 183.0
+margin_top = 184.0
+margin_right = 356.0
+margin_bottom = 274.0
+audio_index = 0
+
+[node name="Label2" parent="Main" instance=ExtResource( 5 )]
+margin_left = 183.0
+margin_top = 254.0
+margin_right = 356.0
+margin_bottom = 344.0
+text = "music"
+
+[node name="Label3" parent="Main" instance=ExtResource( 5 )]
+margin_left = 183.0
+margin_top = 324.0
+margin_right = 356.0
+margin_bottom = 414.0
+text = "sfx"
+audio_index = 2
 
 [node name="CheatCodes" type="Node2D" parent="."]
 visible = false
@@ -68,6 +97,15 @@ flat = true
 [node name="CheatCodeEnterBox" type="Sprite" parent="CheatCodes"]
 position = Vector2( 699, 20 )
 texture = ExtResource( 6 )
+
+[node name="TypeCode" type="Label" parent="CheatCodes"]
+margin_left = 172.0
+margin_top = 5.0
+margin_right = 453.0
+margin_bottom = 43.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
+text = "type Code here"
 
 [node name="InvalidCode" type="Label" parent="CheatCodes"]
 visible = false

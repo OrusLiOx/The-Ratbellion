@@ -1,39 +1,774 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Levels/Level1.gd" type="Script" id=4]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=4]
+[ext_resource path="res://TerrainPrefabs/SafeArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TerrainPrefabs/RespawnZone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://TerrainPrefabs/OneWayTerrain.tscn" type="PackedScene" id=7]
+[ext_resource path="res://TerrainPrefabs/ClimbArea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Player/DeadRat.tscn" type="PackedScene" id=9]
+[ext_resource path="res://TerrainPrefabs/ClimbTerrain.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/Levels/Level1Fence.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform10.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform12.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform62.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Levels/Climb/RopeTop.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Levels/Climb/RopeMiddle.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Levels/Climb/RopeBottom.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Levels/Climb/ClimbSurface.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Levels/Pot.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Levels/rock.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Levels/handle.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Levels/Level1GateTop.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Levels/FenceSegment.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Levels/FenceBoarderSegment.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Levels/grass.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Levels/GateLatch.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Levels/plant.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Levels/tree.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Levels/treeLeaves.png" type="Texture" id=29]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 4 )
+deadrat = ExtResource( 9 )
+objective = "Unlock the gate"
 
 [node name="Terrain" type="Node2D" parent="."]
 
-[node name="Frame" type="Node2D" parent="Terrain"]
+[node name="Tree" type="Node2D" parent="Terrain"]
 
-[node name="Floor" parent="Terrain/Frame" instance=ExtResource( 3 )]
-position = Vector2( 2000, 10 )
+[node name="safeAreas" type="Node2D" parent="Terrain/Tree"]
+visible = false
+
+[node name="SafeArea6" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
+position = Vector2( 566, -5055 )
+rotation = -0.806342
+scale = Vector2( 20, 120 )
+
+[node name="SafeArea7" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
+position = Vector2( 895, -5863 )
+rotation = 0.994838
+scale = Vector2( 20, 95 )
+
+[node name="SafeArea8" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
+position = Vector2( 1290, -5740 )
+rotation = 1.5708
+scale = Vector2( 5, 50 )
+
+[node name="SafeArea9" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
+position = Vector2( 3972, -7052 )
+rotation = -0.150098
+scale = Vector2( 250, 50 )
+
+[node name="SafeArea10" parent="Terrain/Tree/safeAreas" instance=ExtResource( 5 )]
+position = Vector2( 8023, -7154 )
+rotation = 0.195477
+scale = Vector2( 250, 50 )
+
+[node name="OneWayTerrain12" parent="Terrain/Tree/safeAreas" instance=ExtResource( 7 )]
+position = Vector2( 1470, -5780 )
+scale = Vector2( 32, 1 )
+
+[node name="OneWayTerrain10" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 1078, -4379 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain11" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 741, -4509 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea7" parent="Terrain/Tree" groups=["SafeZone"] instance=ExtResource( 8 )]
+position = Vector2( 624, -5010 )
+rotation = -0.806342
+scale = Vector2( 18, 40 )
+
+[node name="ClimbArea8" parent="Terrain/Tree" groups=["SafeZone"] instance=ExtResource( 8 )]
+position = Vector2( 854, -5783 )
+rotation = 0.994838
+scale = Vector2( 10, 40 )
+
+[node name="OneWayTerrain12" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 712, -5435 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea5" parent="Terrain/Tree" instance=ExtResource( 8 )]
+position = Vector2( 1990, -6115 )
+scale = Vector2( 2, 40 )
+
+[node name="OneWayTerrain7" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 2568, -6508 )
+scale = Vector2( 60, 1 )
+
+[node name="OneWayTerrain13" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 2700, -6671 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain8" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 3319, -6813 )
+scale = Vector2( 40, 1 )
+
+[node name="OneWayTerrain9" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 4734, -6551 )
+scale = Vector2( 60, 1 )
+
+[node name="ClimbArea6" parent="Terrain/Tree" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 5184, -6825 )
+scale = Vector2( 2, 20 )
+
+[node name="OneWayTerrain14" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 3984, -6688 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain15" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 5330, -7022 )
+scale = Vector2( 40, 1 )
+
+[node name="OneWayTerrain16" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 5948, -7151 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain17" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 6261, -7265 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea9" parent="Terrain/Tree" instance=ExtResource( 8 )]
+position = Vector2( 6798, -7311 )
+scale = Vector2( 30, 10 )
+
+[node name="ClimbArea10" parent="Terrain/Tree" instance=ExtResource( 8 )]
+position = Vector2( 7437, -6966 )
+scale = Vector2( 40, 10 )
+
+[node name="OneWayTerrain18" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 8212, -7038 )
+scale = Vector2( 30, 1 )
+
+[node name="OneWayTerrain19" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 8763, -7163 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain20" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 9150, -7030 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain21" parent="Terrain/Tree" instance=ExtResource( 7 )]
+position = Vector2( 9579, -6840 )
+scale = Vector2( 30, 1 )
+
+[node name="ClimbArea11" parent="Terrain/Tree" instance=ExtResource( 8 )]
+position = Vector2( 9858, -6344 )
+scale = Vector2( 2, 50 )
+
+[node name="Terrain" parent="Terrain/Tree" instance=ExtResource( 10 )]
+position = Vector2( 6799, -7438 )
+scale = Vector2( 30, 1 )
+
+[node name="Terrain2" parent="Terrain/Tree" instance=ExtResource( 10 )]
+position = Vector2( 7437, -7091 )
+scale = Vector2( 40, 1 )
+
+[node name="Rock" parent="Terrain/Tree" instance=ExtResource( 3 )]
+position = Vector2( 1389, -5680 )
+scale = Vector2( 21, 1 )
+
+[node name="Start" type="Node2D" parent="Terrain"]
+
+[node name="StartPot" type="Node2D" parent="Terrain/Start"]
+
+[node name="handle" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 672, -612 )
+scale = Vector2( 7, 1 )
+
+[node name="Rope" parent="Terrain/Start/StartPot" instance=ExtResource( 8 )]
+position = Vector2( 691, -451 )
+scale = Vector2( 2.03, 17 )
+
+[node name="SafeArea2" parent="Terrain/Start/StartPot" groups=["Climbable"] instance=ExtResource( 5 )]
+position = Vector2( 363, -1101 )
+scale = Vector2( 3, 50 )
+
+[node name="Branch" parent="Terrain/Start/StartPot" instance=ExtResource( 5 )]
+position = Vector2( 116, -1988 )
+rotation = -0.575959
+scale = Vector2( 3, 50 )
+
+[node name="branch" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 582, -1593 )
+scale = Vector2( 25, 1 )
+
+[node name="branch2" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 810, -2117 )
+scale = Vector2( 15, 1 )
+
+[node name="branch3" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 821, -1752 )
+scale = Vector2( 7, 1 )
+
+[node name="branch4" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 554, -1878 )
+scale = Vector2( 7, 1 )
+
+[node name="branch5" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 415, -2027 )
+scale = Vector2( 5, 1 )
+
+[node name="SafeArea" parent="Terrain/Start/StartPot" instance=ExtResource( 5 )]
+position = Vector2( 370, -299 )
+scale = Vector2( 25, 30 )
+
+[node name="TopOfPot" parent="Terrain/Start/StartPot" instance=ExtResource( 7 )]
+position = Vector2( 370, -592 )
+scale = Vector2( 25, 1 )
+
+[node name="Rock" parent="Terrain/Start" instance=ExtResource( 3 )]
+position = Vector2( 958, -70 )
+scale = Vector2( 7, 7 )
+
+[node name="Floor" parent="Terrain/Start" instance=ExtResource( 3 )]
+position = Vector2( -693, 10 )
 scale = Vector2( 200, 1 )
 
-[node name="Posts" type="Node2D" parent="Terrain/Frame"]
+[node name="LeftBoundary" parent="Terrain/Start" instance=ExtResource( 3 )]
+position = Vector2( -2681, -4922 )
+scale = Vector2( 1, 500 )
 
-[node name="Post1" parent="Terrain/Frame/Posts" instance=ExtResource( 3 )]
-position = Vector2( 1731, -137 )
+[node name="roof" parent="Terrain/Start" instance=ExtResource( 3 )]
+position = Vector2( 5169, -7709 )
+scale = Vector2( 800, 1 )
+
+[node name="Fence" type="Node2D" parent="Terrain"]
+position = Vector2( 150, 0 )
+
+[node name="safeareas" type="Node2D" parent="Terrain/Fence"]
+
+[node name="SafeArea1" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 2048, -2842 )
+scale = Vector2( 100, 95 )
+
+[node name="SafeArea2" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 1648, -4445 )
+scale = Vector2( 20, 75 )
+
+[node name="SafeArea4" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 2844, -4390 )
+scale = Vector2( 20, 60 )
+
+[node name="SafeArea5" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 1248, -4735 )
+scale = Vector2( 20, 95 )
+
+[node name="SafeArea6" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 1248, -4735 )
+scale = Vector2( 20, 95 )
+
+[node name="SafeArea3" parent="Terrain/Fence/safeareas" instance=ExtResource( 5 )]
+position = Vector2( 2048, -4327 )
+scale = Vector2( 20, 75 )
+
+[node name="section1" type="Node2D" parent="Terrain/Fence"]
+
+[node name="ClimbArea" parent="Terrain/Fence/section1" instance=ExtResource( 8 )]
+position = Vector2( 2174, -2407 )
+scale = Vector2( 10, 20 )
+
+[node name="ClimbArea2" parent="Terrain/Fence/section1" instance=ExtResource( 8 )]
+position = Vector2( 1668, -2710 )
+scale = Vector2( 10, 10 )
+
+[node name="OneWayTerrain" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 1668, -2599 )
+scale = Vector2( 62, 1 )
+
+[node name="OneWayTerrain2" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 1793, -2051 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea3" parent="Terrain/Fence/section1" instance=ExtResource( 8 )]
+position = Vector2( 1257, -3070 )
+scale = Vector2( 10, 17 )
+
+[node name="OneWayTerrain3" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 1777, -3233 )
+scale = Vector2( 62, 1 )
+
+[node name="ClimbArea4" parent="Terrain/Fence/section1" instance=ExtResource( 8 )]
+position = Vector2( 1773, -3582 )
+scale = Vector2( 10, 9 )
+
+[node name="OneWayTerrain4" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 2292, -3666 )
+scale = Vector2( 62, 1 )
+
+[node name="OneWayTerrain5" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 1319, -3630 )
+scale = Vector2( 12, 1 )
+
+[node name="OneWayTerrain6" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 2430, -3405 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain7" parent="Terrain/Fence/section1" instance=ExtResource( 7 )]
+position = Vector2( 2665, -3553 )
+scale = Vector2( 10, 1 )
+
+[node name="Terrain" parent="Terrain/Fence/section1" instance=ExtResource( 10 )]
+position = Vector2( 1666, -2832 )
+scale = Vector2( 10, 1 )
+
+[node name="section2" type="Node2D" parent="Terrain/Fence"]
+
+[node name="Terrain" parent="Terrain/Fence/section2" instance=ExtResource( 10 )]
+position = Vector2( 2744, -5019 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea4" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
+position = Vector2( 2744, -4900 )
+scale = Vector2( 10, 9 )
+
+[node name="ClimbArea5" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
+position = Vector2( 2456, -4575 )
+scale = Vector2( 2, 77 )
+
+[node name="OneWayTerrain7" parent="Terrain/Fence/section2" instance=ExtResource( 7 )]
+position = Vector2( 2067, -5336 )
+scale = Vector2( 62, 1 )
+
+[node name="OneWayTerrain8" parent="Terrain/Fence/section2" instance=ExtResource( 7 )]
+position = Vector2( 1566, -5112 )
+scale = Vector2( 10, 1 )
+
+[node name="OneWayTerrain9" parent="Terrain/Fence/section2" instance=ExtResource( 7 )]
+position = Vector2( 1307, -4918 )
+scale = Vector2( 10, 1 )
+
+[node name="ClimbArea6" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
+position = Vector2( 1307, -4624 )
+scale = Vector2( 10, 30 )
+
+[node name="FenceBottom" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 1038, -868 )
+scale = Vector2( 1, 120 )
+
+[node name="FenceTop" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 1038, -3389 )
+scale = Vector2( 1, 100 )
+
+[node name="Floor1" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 3049, -1893 )
+scale = Vector2( 200, 1 )
+
+[node name="Floor2" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 2427, -3786 )
+scale = Vector2( 100, 1 )
+
+[node name="Floor2-2" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 1128, -3786 )
+scale = Vector2( 8, 1 )
+
+[node name="FenceTop2" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 1038, -5189 )
 scale = Vector2( 1, 50 )
 
-[node name="Post2" parent="Terrain/Frame/Posts" instance=ExtResource( 3 )]
-position = Vector2( 3462, -137 )
-scale = Vector2( 1, 50 )
+[node name="Post" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 3054, -3785 )
+scale = Vector2( 1, 190 )
 
-[node name="Platforms" type="Node2D" parent="Terrain"]
+[node name="Floor3" parent="Terrain/Fence" instance=ExtResource( 3 )]
+position = Vector2( 7044, -5680 )
+scale = Vector2( 400, 1 )
+
+[node name="Gate" type="Node2D" parent="Terrain"]
+
+[node name="SafeArea3" parent="Terrain/Gate" instance=ExtResource( 5 )]
+position = Vector2( 8204, -4720 )
+scale = Vector2( 500, 95 )
+
+[node name="Floor3" parent="Terrain/Gate" instance=ExtResource( 3 )]
+position = Vector2( 8197, -4733 )
+scale = Vector2( 500, 1 )
+
+[node name="Post" parent="Terrain/Gate" instance=ExtResource( 3 )]
+position = Vector2( 12469, -6641 )
+scale = Vector2( 1, 190 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+margin_left = -4212.0
+margin_top = -9984.0
+margin_right = 13751.0
+margin_bottom = 142.0
+color = Color( 0.682353, 0.854902, 0.854902, 1 )
+
+[node name="Tree" type="Node2D" parent="Background"]
+
+[node name="TreeLeaves" type="Sprite" parent="Background/Tree"]
+position = Vector2( 4576, -7012 )
+texture = ExtResource( 29 )
+
+[node name="Tree" type="Sprite" parent="Background/Tree"]
+position = Vector2( 5333, -6038 )
+texture = ExtResource( 28 )
+
+[node name="fence" type="Node2D" parent="Background"]
+
+[node name="Fence" type="Sprite" parent="Background/fence"]
+position = Vector2( 2196, -2835 )
+texture = ExtResource( 11 )
+
+[node name="ThinPlatform10" type="Sprite" parent="Background/fence"]
+position = Vector2( 2580, -3409 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform11" type="Sprite" parent="Background/fence"]
+position = Vector2( 2815, -3557 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform12" type="Sprite" parent="Background/fence"]
+position = Vector2( 1943, -2055 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform13" type="Sprite" parent="Background/fence"]
+position = Vector2( 1716, -5116 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform14" type="Sprite" parent="Background/fence"]
+position = Vector2( 1457, -4922 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform15" type="Sprite" parent="Background/fence"]
+position = Vector2( 1078, -4383 )
+texture = ExtResource( 12 )
+
+[node name="ThinPlatform16" type="Sprite" parent="Background/fence"]
+position = Vector2( 1469, -3634 )
+texture = ExtResource( 13 )
+
+[node name="ThinPlatform62" type="Sprite" parent="Background/fence"]
+position = Vector2( 2442, -3670 )
+texture = ExtResource( 14 )
+
+[node name="ThinPlatform63" type="Sprite" parent="Background/fence"]
+position = Vector2( 1927, -3237 )
+texture = ExtResource( 14 )
+
+[node name="ThinPlatform64" type="Sprite" parent="Background/fence"]
+position = Vector2( 1817, -2602 )
+texture = ExtResource( 14 )
+
+[node name="ThinPlatform65" type="Sprite" parent="Background/fence"]
+position = Vector2( 2217, -5340 )
+texture = ExtResource( 14 )
+
+[node name="Outside" type="Node2D" parent="Background"]
+
+[node name="Pot" type="Sprite" parent="Background/Outside"]
+position = Vector2( 370, -301 )
+texture = ExtResource( 19 )
+
+[node name="Rock" type="Sprite" parent="Background/Outside"]
+position = Vector2( 958, -70 )
+texture = ExtResource( 20 )
+
+[node name="Handle" type="Sprite" parent="Background/Outside"]
+position = Vector2( 652, -612 )
+texture = ExtResource( 21 )
+
+[node name="grass" type="Node2D" parent="Background/Outside"]
+
+[node name="Grass" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( 928, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass2" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( 437, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass3" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -57, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass4" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -557, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass5" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -1048, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass6" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -1542, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass7" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -2042, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass8" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -2533, -44 )
+texture = ExtResource( 25 )
+
+[node name="Grass9" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( -3027, -44 )
+texture = ExtResource( 25 )
+
+[node name="Plant" type="Sprite" parent="Background/Outside/grass"]
+position = Vector2( 508, -1364.5 )
+texture = ExtResource( 27 )
+
+[node name="gate" type="Node2D" parent="Background"]
+
+[node name="Level1GateTop" type="Sprite" parent="Background/gate"]
+position = Vector2( 7846.5, -5207 )
+texture = ExtResource( 22 )
+
+[node name="Level1GateTop2" type="Sprite" parent="Background/gate"]
+position = Vector2( 7846.5, -4260 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 22 )
+
+[node name="FenceSegment" type="Sprite" parent="Background/gate"]
+position = Vector2( 3827, -3352.5 )
+texture = ExtResource( 23 )
+
+[node name="FenceSegment2" type="Sprite" parent="Background/gate"]
+position = Vector2( 3827, -2445 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 23 )
+
+[node name="FenceSegment3" type="Sprite" parent="Background/gate"]
+position = Vector2( 3827, -1537 )
+texture = ExtResource( 23 )
+
+[node name="FenceSegment4" type="Sprite" parent="Background/gate"]
+position = Vector2( 2745, -4981 )
+texture = ExtResource( 23 )
+offset = Vector2( 10347, -236.5 )
+
+[node name="FenceSegment5" type="Sprite" parent="Background/gate"]
+position = Vector2( 2745, -4546 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 23 )
+offset = Vector2( 10347, -236.5 )
+
+[node name="FenceBoarderSegment" type="Sprite" parent="Background/gate"]
+position = Vector2( 12859, -5680.5 )
+texture = ExtResource( 24 )
+
+[node name="GateLatch" type="Sprite" parent="Background/gate"]
+position = Vector2( 11721, -5004 )
+texture = ExtResource( 26 )
+
+[node name="Climb" type="Node2D" parent="Background"]
+
+[node name="rope" type="Node2D" parent="Background/Climb"]
+
+[node name="Top" type="Sprite" parent="Background/Climb/rope"]
+position = Vector2( 2606, -5339 )
+texture = ExtResource( 15 )
+
+[node name="RopeMiddle" type="Sprite" parent="Background/Climb/rope"]
+position = Vector2( 2606, -4609.5 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 1480 )
+
+[node name="Bot" type="Sprite" parent="Background/Climb/rope"]
+position = Vector2( 2606, -3842 )
+texture = ExtResource( 17 )
+
+[node name="rope2" type="Node2D" parent="Background/Climb"]
+position = Vector2( -616, -1173 )
+
+[node name="Top" type="Sprite" parent="Background/Climb/rope2"]
+position = Vector2( 2606, -5339 )
+texture = ExtResource( 15 )
+
+[node name="RopeMiddle" type="Sprite" parent="Background/Climb/rope2"]
+position = Vector2( 2606, -4964.5 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 770 )
+
+[node name="Bot" type="Sprite" parent="Background/Climb/rope2"]
+position = Vector2( 2606, -4567 )
+texture = ExtResource( 17 )
+
+[node name="rope3" type="Node2D" parent="Background/Climb"]
+position = Vector2( 7252, -1505 )
+
+[node name="Top" type="Sprite" parent="Background/Climb/rope3"]
+position = Vector2( 2606, -5339 )
+texture = ExtResource( 15 )
+
+[node name="RopeMiddle" type="Sprite" parent="Background/Climb/rope3"]
+position = Vector2( 2606, -4874.5 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 950 )
+
+[node name="Bot" type="Sprite" parent="Background/Climb/rope3"]
+position = Vector2( 2606, -4368 )
+texture = ExtResource( 17 )
+
+[node name="rope4" type="Node2D" parent="Background/Climb"]
+position = Vector2( -1915, 4721 )
+
+[node name="Top" type="Sprite" parent="Background/Climb/rope4"]
+position = Vector2( 2606, -5339 )
+texture = ExtResource( 15 )
+
+[node name="RopeMiddle" type="Sprite" parent="Background/Climb/rope4"]
+position = Vector2( 2606, -5209.5 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 280 )
+
+[node name="Bot" type="Sprite" parent="Background/Climb/rope4"]
+position = Vector2( 2606, -5042 )
+texture = ExtResource( 17 )
+
+[node name="rope5" type="Node2D" parent="Background/Climb"]
+position = Vector2( 2578, -1688 )
+
+[node name="Top" type="Sprite" parent="Background/Climb/rope5"]
+position = Vector2( 2606, -5339 )
+texture = ExtResource( 15 )
+
+[node name="RopeMiddle" type="Sprite" parent="Background/Climb/rope5"]
+position = Vector2( 2606, -5174.5 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 350 )
+
+[node name="Bot" type="Sprite" parent="Background/Climb/rope5"]
+position = Vector2( 2606, -4968 )
+texture = ExtResource( 17 )
+
+[node name="ClimbSurface" type="Sprite" parent="Background/Climb"]
+position = Vector2( 2326, -2394 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 224.667, 403.452 )
+
+[node name="ClimbSurface2" type="Sprite" parent="Background/Climb"]
+position = Vector2( 1818, -2710 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 224.667, 205.383 )
+
+[node name="ClimbSurface3" type="Sprite" parent="Background/Climb"]
+position = Vector2( 1408, -3065 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 67.2379, 224.667, 331.657 )
+
+[node name="ClimbSurface4" type="Sprite" parent="Background/Climb"]
+position = Vector2( 1926, -3563 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 189.298, 224.667, 177.11 )
+
+[node name="ClimbSurface5" type="Sprite" parent="Background/Climb"]
+position = Vector2( 2903, -4889 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 6.60034, 189.298, 218.067, 177.11 )
+
+[node name="ClimbSurface6" type="Sprite" parent="Background/Climb"]
+position = Vector2( 1457, -4613 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 224.667, 583.939 )
+
+[node name="ClimbSurface7" type="Sprite" parent="Background/Climb"]
+position = Vector2( 6797, -7311 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 570.376, 205.38 )
+
+[node name="ClimbSurface8" type="Sprite" parent="Background/Climb"]
+position = Vector2( 7316, -6964 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 570.376, 205.38 )
+
+[node name="ClimbSurface9" type="Sprite" parent="Background/Climb"]
+position = Vector2( 7719, -6964 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 320.303, 0, 229.345, 205.38 )
+
+[node name="slope" type="Node2D" parent="Background/Climb"]
+rotation = -0.806342
+
+[node name="ClimbSurface5" type="Sprite" parent="Background/Climb/slope"]
+position = Vector2( 4053.78, -3196.07 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 25.4304, 132.572, 374.962, 449.995 )
+
+[node name="ClimbSurface6" type="Sprite" parent="Background/Climb/slope"]
+position = Vector2( 4050.88, -2787.34 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 25.4304, 132.572, 374.962, 344.968 )
+
+[node name="slope2" type="Node2D" parent="Background/Climb"]
+position = Vector2( -3881, -7540 )
+rotation = 0.994838
+
+[node name="ClimbSurface5" type="Sprite" parent="Background/Climb/slope2"]
+position = Vector2( 4053.78, -3196.07 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 25.43, 132.572, 200, 449.995 )
+
+[node name="ClimbSurface6" type="Sprite" parent="Background/Climb/slope2"]
+position = Vector2( 4050.88, -2787.34 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 25.43, 132.572, 200, 344.968 )
+
+[node name="ClimbSurface10" type="Sprite" parent="Background/Climb"]
+position = Vector2( 364, -905 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 508.334, 1.46243, 61.2856, 580.411 )
+
+[node name="ClimbSurface11" type="Sprite" parent="Background/Climb"]
+position = Vector2( 363, -1402 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 508.334, 1.46243, 61.2856, 371.319 )
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+margin_left = -3448.0
+margin_top = 6.0
+margin_right = 3361.0
+margin_bottom = 1161.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="RespawnZone2" parent="CheckPoints" instance=ExtResource( 6 )]
+position = Vector2( 2092, -6518 )
+
+[node name="RespawnZone3" parent="CheckPoints" instance=ExtResource( 6 )]
+position = Vector2( 1833, -3796 )
 
 [node name="DeadRats" type="Node2D" parent="."]
 
 [node name="LevelEndArea" parent="." instance=ExtResource( 1 )]
-position = Vector2( -314, 619 )
+position = Vector2( 11719, -4743 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 39, -77 )
+position = Vector2( 396, 0 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 1178, -4190 )
+
+[connection signal="death" from="Player" to="." method="_on_Player_death"]

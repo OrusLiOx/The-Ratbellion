@@ -8,9 +8,8 @@
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
-color = Color( 0.521569, 0.45098, 0.396078, 0.392157 )
+color = Color( 0.521569, 0.45098, 0.396078, 1 )

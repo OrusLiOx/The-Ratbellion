@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/MenuThings/Chalkboard.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/MenuThings/MenuWall.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/MenuThings/Chalk/MainMenuChalk.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/MenuThings/rats.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -33,11 +34,10 @@ position = Vector2( 6, -16 )
 texture = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]
-visible = false
 position = Vector2( 513, 301 )
 
 [node name="MainMenuChalk" type="Sprite" parent="Main"]
-position = Vector2( -488.5, -313.5 )
+position = Vector2( -507, -317 )
 texture = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="Main"]
@@ -98,6 +98,7 @@ visible = false
 position = Vector2( -526, -241 )
 
 [node name="Controls" type="Node2D" parent="."]
+visible = false
 
 [node name="Title" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -135,12 +136,16 @@ climb - w/s
 jump - space
 drop - s+space
 
-pause - esc
+pause - tab
 respawn - r"
 
 [node name="CloseBox" type="Sprite" parent="Controls"]
 position = Vector2( 395, -224 )
 texture = SubResource( 4 )
+
+[node name="Rats" type="Sprite" parent="."]
+position = Vector2( 0, 238.5 )
+texture = ExtResource( 9 )
 
 [connection signal="button_down" from="Main/Buttons/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="Main/Buttons/Start" to="." method="_on_Start_button_down"]
