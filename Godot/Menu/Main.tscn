@@ -77,20 +77,20 @@ theme = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.65098, 0.65098, 0.65098, 1 )
 enabled_focus_mode = 0
-text = "Level Select"
+text = "Play"
 flat = true
 
-[node name="Controls" type="Button" parent="Main/Buttons"]
-margin_left = 43.0
+[node name="LevelSelect" type="Button" parent="Main/Buttons"]
+margin_left = 46.0
 margin_top = 155.0
-margin_right = 324.0
+margin_right = 327.0
 margin_bottom = 216.0
 focus_mode = 0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.65098, 0.65098, 0.65098, 1 )
 enabled_focus_mode = 0
-text = "Controls"
+text = "Level Select"
 flat = true
 
 [node name="Settings" parent="." instance=ExtResource( 4 )]
@@ -149,6 +149,7 @@ texture = ExtResource( 9 )
 
 [connection signal="button_down" from="Main/Buttons/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="Main/Buttons/Start" to="." method="_on_Start_button_down"]
-[connection signal="button_down" from="Main/Buttons/Controls" to="." method="_on_Controls_button_down"]
+[connection signal="button_down" from="Main/Buttons/LevelSelect" to="." method="_on_Controls_button_down"]
+[connection signal="button_down" from="Main/Buttons/LevelSelect" to="." method="_on_LevelSelect_button_down"]
 [connection signal="close_settings" from="Settings" to="." method="_on_Settings_close_settings"]
 [connection signal="button_down" from="Controls/CloseControls" to="." method="_on_CloseControls_button_down"]

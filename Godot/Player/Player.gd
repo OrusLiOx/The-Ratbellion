@@ -52,6 +52,7 @@ signal death( transform,  color, flip)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Globals.paused = false
 	$Camera2D.make_current()
 	self.visible = true
 	# get components
@@ -101,6 +102,8 @@ func _physics_process(_delta):
 		determineClimb()
 		determineJump()
 		animate()
+		if climbing and walking:
+			velocity = velocity.normalized() *speed
 	# perform movement
 	if !paused:
 		self.set_collision_mask_bit(3, climbing)
@@ -111,16 +114,17 @@ func _physics_process(_delta):
 
 # determine movement functions
 func determineWalk():
+
 	if Input.is_action_pressed("Left"): 
 		if !Input.is_action_pressed("Right"):
 			flip(true)
-			velocity.x = -speed
+			velocity.x = -Globals.speed
 			walking = true
 		else:
 			walking = false
 	elif Input.is_action_pressed("Right"): 
 		flip(false)
-		velocity.x = speed
+		velocity.x = Globals.speed
 		walking = true
 	else:
 		walking = false
@@ -246,6 +250,7 @@ func pickColor():
 
 func pause():
 	paused = !paused
+	Globals.paused = paused
 	controlLock = paused
 	$Pause.visible = paused
 	if !paused:
@@ -325,12 +330,14 @@ func _on_Feet_area_entered(area):
 				if paused:
 					pause()
 				playSound(win)
+				timer.paused = true
 				$Complete.visible = true
 				controlLock = true
 				setAnimation("Idle")
 				yield(get_tree().create_timer(2.0), "timeout")
 				$Complete.visible = false
-				return get_tree().change_scene("res://Menu/LevelSelect.tscn")
+				queue_free()
+				Globals.nextLevel()
 func _on_Feet_area_exited(area):
 	for g in area.get_groups():
 		match(g):
@@ -360,6 +367,7 @@ func _on_Timer_timeout():
 func respawn():
 	setAnimation("Dead")
 	controlLock = true
+	climbing = false
 	dead = false
 	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("death", transform, furAnim.modulate, furAnim.flip_h)
@@ -378,6 +386,7 @@ func _on_Settings_button_down():
 	$Settings.visible = true
 	$Pause/Main.visible = false
 func _on_Main_Menu_button_down():
+	queue_free()
 	return get_tree().change_scene("res://Menu/Main.tscn")
 func _on_Settings_close_settings():
 	$Pause/Main.visible = true

@@ -20,12 +20,19 @@ func _on_Settings_button_down():
 	$Settings/CheatCodes.visible=false
 	$Main.visible = false
 func _on_Start_button_down():
+	Globals.playMode = true
+	Globals.level = 0
+	queue_free()
+	return get_tree().change_scene("res://Levels/Level0.tscn")
+func _on_LevelSelect_button_down():
+	Globals.playMode = false
+	queue_free()
 	return get_tree().change_scene("res://Menu/LevelSelect.tscn")
-func _on_Controls_button_down():
-	$Controls.visible = true
-	$Main.visible = false
 func _on_CloseControls_button_down():
 	$Controls.visible = false
 	$Main.visible = true
 func _on_Settings_close_settings():
 	$Main.visible = true
+
+
+

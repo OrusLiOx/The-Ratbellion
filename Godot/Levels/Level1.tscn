@@ -10,7 +10,7 @@
 [ext_resource path="res://TerrainPrefabs/ClimbArea.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/DeadRat.tscn" type="PackedScene" id=9]
 [ext_resource path="res://TerrainPrefabs/ClimbTerrain.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Sprites/Levels/Level1Fence.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Levels/Level1/Level1Fence.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform10.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform12.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/Levels/Platforms/ThinPlatform62.png" type="Texture" id=14]
@@ -18,22 +18,22 @@
 [ext_resource path="res://Sprites/Levels/Climb/RopeMiddle.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/Levels/Climb/RopeBottom.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Levels/Climb/ClimbSurface.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Levels/Pot.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Levels/rock.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/Levels/handle.png" type="Texture" id=21]
-[ext_resource path="res://Sprites/Levels/Level1GateTop.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Levels/FenceSegment.png" type="Texture" id=23]
-[ext_resource path="res://Sprites/Levels/FenceBoarderSegment.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Levels/grass.png" type="Texture" id=25]
-[ext_resource path="res://Sprites/Levels/GateLatch.png" type="Texture" id=26]
-[ext_resource path="res://Sprites/Levels/plant.png" type="Texture" id=27]
-[ext_resource path="res://Sprites/Levels/tree.png" type="Texture" id=28]
-[ext_resource path="res://Sprites/Levels/treeLeaves.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Levels/Level1/Pot.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Levels/Level1/rock.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Levels/Level1/handle.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Levels/Level1/Level1GateTop.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Levels/Level1/FenceSegment.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Levels/Level1/FenceBoarderSegment.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Levels/Level1/grass.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Levels/Level1/GateLatch.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Levels/Level1/plant.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Levels/Level1/tree.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Levels/Level1/treeLeaves.png" type="Texture" id=29]
 [ext_resource path="res://Sprites/Levels/signs/signPost.png" type="Texture" id=30]
 [ext_resource path="res://Sprites/Levels/signs/danger.png" type="Texture" id=31]
 [ext_resource path="res://Sprites/Levels/signs/Arrow.png" type="Texture" id=32]
 
-[node name="Level1" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 4 )
 deadrat = ExtResource( 9 )
 objective = "Unlock the gate to unleash the dog"
@@ -323,12 +323,12 @@ scale = Vector2( 10, 1 )
 [node name="section2" type="Node2D" parent="Terrain/Fence"]
 
 [node name="Terrain" parent="Terrain/Fence/section2" instance=ExtResource( 10 )]
-position = Vector2( 2744, -5019 )
+position = Vector2( 2744, -4991 )
 scale = Vector2( 10, 1 )
 
 [node name="ClimbArea4" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
-position = Vector2( 2744, -4900 )
-scale = Vector2( 10, 9 )
+position = Vector2( 2745, -4877 )
+scale = Vector2( 10, 8 )
 
 [node name="ClimbArea5" parent="Terrain/Fence/section2" instance=ExtResource( 8 )]
 position = Vector2( 2456, -4567 )

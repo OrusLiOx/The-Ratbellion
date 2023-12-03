@@ -1,0 +1,467 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=2]
+[ext_resource path="res://Player/DeadRat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TerrainPrefabs/YarnBall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TerrainPrefabs/Terrain.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TerrainPrefabs/SafeArea.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/Levels/Level2/CatBowl.png" type="Texture" id=7]
+[ext_resource path="res://TerrainPrefabs/ClimbTerrain.tscn" type="PackedScene" id=8]
+[ext_resource path="res://TerrainPrefabs/ClimbArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://TerrainPrefabs/OneWayTerrain.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TerrainPrefabs/RespawnZone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://TerrainPrefabs/Pushable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/Levels/Level2/couch.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Levels/Level2/couchYarn.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Levels/Level2/table.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Levels/Level2/chair.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Levels/Level2/bowl.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Levels/Level2/mug.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Levels/Level2/sink.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Levels/Level2/glass.png" type="Texture" id=21]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 2 )
+deadrat = ExtResource( 3 )
+objective = "Push the cat treats into the trash"
+
+[node name="Blackout" type="ColorRect" parent="."]
+margin_left = -3969.0
+margin_top = -7970.0
+margin_right = -3921.0
+margin_bottom = -7907.0
+rect_scale = Vector2( 550, 200 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Room" type="ColorRect" parent="."]
+margin_left = -589.0
+margin_top = -3998.0
+margin_right = -549.0
+margin_bottom = -3958.0
+rect_scale = Vector2( 500, 100 )
+color = Color( 0.796078, 0.796078, 0.796078, 1 )
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Couch" type="Node2D" parent="Terrain"]
+
+[node name="RightLeg" parent="Terrain/Couch" instance=ExtResource( 6 )]
+position = Vector2( 426, -100 )
+scale = Vector2( 10, 10 )
+
+[node name="LeftLeg" parent="Terrain/Couch" instance=ExtResource( 6 )]
+position = Vector2( 3104, -100 )
+scale = Vector2( 10, 10 )
+
+[node name="Back" parent="Terrain/Couch" instance=ExtResource( 5 )]
+position = Vector2( 1765, -600 )
+scale = Vector2( 155, 40 )
+
+[node name="Cushion" parent="Terrain/Couch" instance=ExtResource( 6 )]
+position = Vector2( 1765, -1100 )
+scale = Vector2( 130, 10 )
+
+[node name="Arms" parent="Terrain/Couch" instance=ExtResource( 5 )]
+position = Vector2( 1765, -640 )
+scale = Vector2( 175, 10 )
+
+[node name="Climb1" parent="Terrain/Couch" instance=ExtResource( 8 )]
+position = Vector2( -5, -807 )
+scale = Vector2( 2, 1 )
+
+[node name="ClimbArea" parent="Terrain/Couch/Climb1" instance=ExtResource( 9 )]
+position = Vector2( 0, 410 )
+scale = Vector2( 1, 40 )
+
+[node name="Climb2" parent="Terrain/Couch" instance=ExtResource( 8 )]
+position = Vector2( 195, -1063 )
+scale = Vector2( 2, 1 )
+
+[node name="ClimbArea2" parent="Terrain/Couch/Climb2" instance=ExtResource( 9 )]
+position = Vector2( 0, 170 )
+scale = Vector2( 1, 16 )
+
+[node name="Arms2" parent="Terrain/Couch" instance=ExtResource( 5 )]
+position = Vector2( 29, -540 )
+rotation = -0.806342
+
+[node name="Couch" type="Sprite" parent="Terrain/Couch"]
+position = Vector2( 1765, -600 )
+texture = ExtResource( 14 )
+
+[node name="CouchYarn" type="Sprite" parent="Terrain/Couch"]
+modulate = Color( 0.67451, 0.87451, 0.698039, 1 )
+position = Vector2( 679, -582 )
+texture = ExtResource( 15 )
+
+[node name="blue" parent="Terrain/Couch" instance=ExtResource( 4 )]
+modulate = Color( 0.67451, 0.87451, 0.698039, 1 )
+position = Vector2( 1446, -1000 )
+
+[node name="CatBowl" type="Node2D" parent="Terrain"]
+position = Vector2( 5266, -13 )
+
+[node name="SafeArea" parent="Terrain/CatBowl" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 0, -66 )
+scale = Vector2( 21, 8 )
+
+[node name="Sprite" type="Sprite" parent="Terrain/CatBowl"]
+position = Vector2( 0, -79 )
+texture = ExtResource( 7 )
+
+[node name="tablechair" type="Node2D" parent="Terrain"]
+position = Vector2( 704, -1 )
+
+[node name="Table" type="Node2D" parent="Terrain/tablechair"]
+position = Vector2( 762, 220 )
+
+[node name="Legs" type="Node2D" parent="Terrain/tablechair/Table"]
+position = Vector2( 2432, -105 )
+
+[node name="SafeArea" parent="Terrain/tablechair/Table/Legs" instance=ExtResource( 6 )]
+position = Vector2( 2568, -453 )
+scale = Vector2( 4, 55 )
+
+[node name="SafeArea2" parent="Terrain/tablechair/Table/Legs" instance=ExtResource( 6 )]
+position = Vector2( 4666, -453 )
+scale = Vector2( 4, 55 )
+
+[node name="SafeArea" parent="Terrain/tablechair/Table" instance=ExtResource( 6 )]
+position = Vector2( 6044, -1078 )
+scale = Vector2( 105, 3 )
+
+[node name="OneWayTerrain" parent="Terrain/tablechair/Table" instance=ExtResource( 10 )]
+position = Vector2( 6049, -1099 )
+scale = Vector2( 108.9, 1 )
+
+[node name="Table" type="Sprite" parent="Terrain/tablechair/Table"]
+position = Vector2( 6049, -664 )
+texture = ExtResource( 16 )
+
+[node name="Table2" type="Sprite" parent="Terrain/tablechair/Table"]
+position = Vector2( 6049, -1075 )
+z_index = 1
+texture = ExtResource( 16 )
+vframes = 13
+
+[node name="Chair" type="Node2D" parent="Terrain/tablechair"]
+position = Vector2( 1451, -90 )
+
+[node name="Legs" type="Node2D" parent="Terrain/tablechair/Chair"]
+position = Vector2( 975, -7 )
+
+[node name="SafeArea" parent="Terrain/tablechair/Chair/Legs" instance=ExtResource( 6 )]
+position = Vector2( 4011, -453 )
+scale = Vector2( 4, 55 )
+
+[node name="SafeArea2" parent="Terrain/tablechair/Chair/Legs" instance=ExtResource( 6 )]
+position = Vector2( 4666, -453 )
+scale = Vector2( 4, 55 )
+
+[node name="Back" type="Node2D" parent="Terrain/tablechair/Chair"]
+
+[node name="SafeArea" parent="Terrain/tablechair/Chair/Back" instance=ExtResource( 6 )]
+position = Vector2( 5310, -813 )
+scale = Vector2( 35, 20 )
+
+[node name="OneWayTerrain" parent="Terrain/tablechair/Chair/Back" instance=ExtResource( 10 )]
+position = Vector2( 5313.5, -1004 )
+scale = Vector2( 36.75, 1 )
+
+[node name="Seat" parent="Terrain/tablechair/Chair" instance=ExtResource( 5 )]
+position = Vector2( 5313.5, -344 )
+scale = Vector2( 36.75, 3 )
+
+[node name="Climb" type="Node2D" parent="Terrain/tablechair/Chair"]
+
+[node name="ClimbArea" parent="Terrain/tablechair/Chair/Climb" instance=ExtResource( 9 )]
+position = Vector2( 4918, -167 )
+scale = Vector2( 2, 25 )
+
+[node name="ClimbArea2" parent="Terrain/tablechair/Chair/Climb" instance=ExtResource( 9 )]
+position = Vector2( 5548, -720 )
+scale = Vector2( 2, 35 )
+
+[node name="Chair" type="Sprite" parent="Terrain/tablechair/Chair"]
+modulate = Color( 0.85098, 0.85098, 0.85098, 1 )
+position = Vector2( 5313.5, -461.5 )
+texture = ExtResource( 17 )
+
+[node name="Counter" type="Node2D" parent="Terrain"]
+position = Vector2( -1764, 47 )
+
+[node name="Sink" type="Node2D" parent="Terrain/Counter"]
+position = Vector2( 13715, 589 )
+
+[node name="safe" parent="Terrain/Counter/Sink" instance=ExtResource( 6 )]
+position = Vector2( 0, -1300 )
+scale = Vector2( 90, 30 )
+
+[node name="Terrain2" parent="Terrain/Counter/Sink" instance=ExtResource( 5 )]
+position = Vector2( -126, -1738 )
+scale = Vector2( 2.1, 7.1 )
+
+[node name="Terrain" parent="Terrain/Counter/Sink" instance=ExtResource( 5 )]
+position = Vector2( 0, -1880 )
+scale = Vector2( 5, 30 )
+
+[node name="Inside" parent="Terrain/Counter/Sink" instance=ExtResource( 10 )]
+position = Vector2( 0, -1594 )
+scale = Vector2( 90, 1 )
+
+[node name="Bottom" parent="Terrain/Counter/Sink" instance=ExtResource( 5 )]
+position = Vector2( -58, -633 )
+scale = Vector2( 105, 50 )
+
+[node name="Sink" type="Sprite" parent="Terrain/Counter/Sink"]
+position = Vector2( 0, -1651 )
+texture = ExtResource( 20 )
+
+[node name="Glass" type="Node2D" parent="Terrain/Counter/Sink"]
+position = Vector2( -61, 1 )
+
+[node name="RightCup" parent="Terrain/Counter/Sink/Glass" instance=ExtResource( 10 )]
+position = Vector2( 583, -1460 )
+scale = Vector2( 10, 1 )
+
+[node name="Glass" type="Sprite" parent="Terrain/Counter/Sink/Glass"]
+position = Vector2( 583, -1302.5 )
+texture = ExtResource( 21 )
+
+[node name="mug2" type="Node2D" parent="Terrain/Counter/Sink"]
+position = Vector2( -1134, -31 )
+
+[node name="LeftCup2" parent="Terrain/Counter/Sink/mug2" instance=ExtResource( 10 )]
+position = Vector2( 647, -1323 )
+scale = Vector2( 10, 1 )
+
+[node name="LeftCup3" parent="Terrain/Counter/Sink/mug2" instance=ExtResource( 10 )]
+position = Vector2( 517, -1289 )
+scale = Vector2( 3, 1 )
+
+[node name="Mug" type="Sprite" parent="Terrain/Counter/Sink/mug2"]
+position = Vector2( 617, -1233 )
+texture = ExtResource( 19 )
+
+[node name="Bowl2" type="Node2D" parent="Terrain/Counter/Sink"]
+position = Vector2( 753, 1 )
+
+[node name="LeftBowl" parent="Terrain/Counter/Sink/Bowl2" instance=ExtResource( 10 )]
+position = Vector2( -495, -1239 )
+scale = Vector2( 18, 1 )
+
+[node name="Bowl" type="Sprite" parent="Terrain/Counter/Sink/Bowl2"]
+position = Vector2( -495, -1191.5 )
+texture = ExtResource( 18 )
+
+[node name="Bowl" type="Node2D" parent="Terrain/Counter/Sink"]
+
+[node name="LeftBowl" parent="Terrain/Counter/Sink/Bowl" instance=ExtResource( 10 )]
+position = Vector2( -495, -1238 )
+scale = Vector2( 18, 1 )
+
+[node name="Bowl" type="Sprite" parent="Terrain/Counter/Sink/Bowl"]
+position = Vector2( -495, -1190.5 )
+texture = ExtResource( 18 )
+
+[node name="mug" type="Node2D" parent="Terrain/Counter/Sink"]
+position = Vector2( 0, -1 )
+
+[node name="LeftCup2" parent="Terrain/Counter/Sink/mug" instance=ExtResource( 10 )]
+position = Vector2( 647, -1323 )
+scale = Vector2( 10, 1 )
+
+[node name="LeftCup3" parent="Terrain/Counter/Sink/mug" instance=ExtResource( 10 )]
+position = Vector2( 517, -1289 )
+scale = Vector2( 3, 1 )
+
+[node name="Mug" type="Sprite" parent="Terrain/Counter/Sink/mug"]
+position = Vector2( 617, -1233 )
+texture = ExtResource( 19 )
+
+[node name="ClimbArea2" parent="Terrain/Counter" instance=ExtResource( 9 )]
+position = Vector2( 10678, -684 )
+scale = Vector2( 2, 35 )
+
+[node name="Left" type="Node2D" parent="Terrain/Counter"]
+
+[node name="LeftTerrain" parent="Terrain/Counter/Left" instance=ExtResource( 5 )]
+position = Vector2( 11765, -515 )
+scale = Vector2( 105, 50 )
+
+[node name="DishRack" type="Node2D" parent="Terrain/Counter/Left"]
+
+[node name="SafeArea" parent="Terrain/Counter/Left/DishRack" instance=ExtResource( 6 )]
+position = Vector2( 12529, -1302 )
+scale = Vector2( 14, 20 )
+
+[node name="Terrain" parent="Terrain/Counter/Left/DishRack" instance=ExtResource( 5 )]
+position = Vector2( 12244, -1135 )
+scale = Vector2( 45, 12 )
+
+[node name="jar" type="Node2D" parent="Terrain/Counter/Left"]
+position = Vector2( 129, -1 )
+
+[node name="OneWayTerrain" parent="Terrain/Counter/Left/jar" instance=ExtResource( 10 )]
+position = Vector2( 11220, -1425 )
+scale = Vector2( 15, 1 )
+
+[node name="SafeArea" parent="Terrain/Counter/Left/jar" instance=ExtResource( 6 )]
+position = Vector2( 11220, -1215 )
+scale = Vector2( 17, 20 )
+
+[node name="cup" type="Node2D" parent="Terrain/Counter/Left"]
+position = Vector2( 11, -29 )
+
+[node name="SafeArea" parent="Terrain/Counter/Left/cup" instance=ExtResource( 6 )]
+position = Vector2( 10961, -1062 )
+scale = Vector2( 10, 20 )
+
+[node name="LeftCup" parent="Terrain/Counter/Left/cup" instance=ExtResource( 10 )]
+position = Vector2( 10960, -1257 )
+scale = Vector2( 10, 1 )
+
+[node name="box" type="Node2D" parent="Terrain/Counter/Left"]
+position = Vector2( -151, 266 )
+
+[node name="SafeArea" parent="Terrain/Counter/Left/box" instance=ExtResource( 6 )]
+position = Vector2( 11219, -1215 )
+scale = Vector2( 25, 20 )
+
+[node name="OneWayTerrain" parent="Terrain/Counter/Left/box" instance=ExtResource( 10 )]
+position = Vector2( 11219, -1409 )
+scale = Vector2( 25, 1 )
+
+[node name="pink" parent="Terrain/Counter/Left" instance=ExtResource( 4 )]
+modulate = Color( 0.937255, 0.721569, 0.945098, 1 )
+position = Vector2( 11676, -1015 )
+
+[node name="Right" type="Node2D" parent="Terrain/Counter"]
+
+[node name="end" type="Node2D" parent="Terrain/Counter/Right"]
+position = Vector2( 1830, 0 )
+
+[node name="green" parent="Terrain/Counter/Right/end" instance=ExtResource( 4 )]
+modulate = Color( 0.682353, 0.807843, 1, 1 )
+position = Vector2( 15962, -1015 )
+
+[node name="Pushable" parent="Terrain/Counter/Right/end" instance=ExtResource( 12 )]
+position = Vector2( 16542, -1015 )
+scale = Vector2( 10, 10 )
+
+[node name="LevelEndArea" parent="Terrain/Counter/Right/end" instance=ExtResource( 13 )]
+position = Vector2( 16982, -1015 )
+
+[node name="stove" type="Node2D" parent="Terrain/Counter/Right"]
+position = Vector2( -315, 0 )
+
+[node name="safe" parent="Terrain/Counter/Right/stove" instance=ExtResource( 6 )]
+position = Vector2( 17166, -914 )
+scale = Vector2( 60, 10 )
+
+[node name="OneWayTerrain" parent="Terrain/Counter/Right/stove" instance=ExtResource( 10 )]
+position = Vector2( 16836, -1005 )
+scale = Vector2( 20, 1 )
+
+[node name="OneWayTerrain2" parent="Terrain/Counter/Right/stove" instance=ExtResource( 10 )]
+position = Vector2( 17496, -1005 )
+scale = Vector2( 20, 1 )
+
+[node name="terrain" parent="Terrain/Counter/Right/stove" instance=ExtResource( 5 )]
+position = Vector2( 17190, -424 )
+scale = Vector2( 78, 50 )
+
+[node name="middle" parent="Terrain/Counter/Right/stove" instance=ExtResource( 5 )]
+position = Vector2( 17166, -965 )
+scale = Vector2( 13, 5 )
+
+[node name="coffeemaker" type="Node2D" parent="Terrain/Counter/Right"]
+
+[node name="Terrain" parent="Terrain/Counter/Right/coffeemaker" instance=ExtResource( 5 )]
+position = Vector2( 15786, -1312 )
+scale = Vector2( 25, 30 )
+
+[node name="ClimbArea2" parent="Terrain/Counter/Right/coffeemaker" instance=ExtResource( 9 )]
+position = Vector2( 15517, -1529 )
+scale = Vector2( 2, 10 )
+
+[node name="mug" type="Node2D" parent="Terrain/Counter/Right"]
+position = Vector2( 15500, 118 )
+scale = Vector2( -1, 1 )
+
+[node name="LeftCup2" parent="Terrain/Counter/Right/mug" instance=ExtResource( 10 )]
+position = Vector2( 647, -1323 )
+scale = Vector2( 10, 1 )
+
+[node name="LeftCup3" parent="Terrain/Counter/Right/mug" instance=ExtResource( 10 )]
+position = Vector2( 517, -1289 )
+scale = Vector2( 3, 1 )
+
+[node name="SafeArea" parent="Terrain/Counter/Right/mug" instance=ExtResource( 6 )]
+position = Vector2( 647, -1231 )
+scale = Vector2( 10, 10 )
+
+[node name="Mug" type="Sprite" parent="Terrain/Counter/Right/mug"]
+position = Vector2( 617, -1233 )
+texture = ExtResource( 19 )
+
+[node name="beans" type="Node2D" parent="Terrain/Counter/Right"]
+position = Vector2( 4314, -102 )
+
+[node name="SafeArea" parent="Terrain/Counter/Right/beans" instance=ExtResource( 6 )]
+position = Vector2( 10961, -1062 )
+scale = Vector2( 20, 20 )
+
+[node name="LeftCup" parent="Terrain/Counter/Right/beans" instance=ExtResource( 10 )]
+position = Vector2( 10960, -1257 )
+scale = Vector2( 20, 1 )
+
+[node name="scoop" type="Node2D" parent="Terrain/Counter/Right/beans"]
+position = Vector2( 88, -1 )
+
+[node name="SafeArea2" parent="Terrain/Counter/Right/beans/scoop" instance=ExtResource( 6 )]
+position = Vector2( 10862, -1297 )
+scale = Vector2( 5, 3 )
+
+[node name="LeftCup" parent="Terrain/Counter/Right/beans/scoop" instance=ExtResource( 10 )]
+position = Vector2( 10812, -1321 )
+scale = Vector2( 10, 1 )
+
+[node name="Sink-stove" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
+position = Vector2( 15468, -515 )
+scale = Vector2( 85.3, 50 )
+
+[node name="Sink-stove2" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
+position = Vector2( 18081, -515 )
+scale = Vector2( 70, 50 )
+
+[node name="Boundary" type="Node2D" parent="Terrain"]
+
+[node name="Terrain" parent="Terrain/Boundary" instance=ExtResource( 5 )]
+position = Vector2( 9397, 10 )
+scale = Vector2( 1000, 1 )
+
+[node name="LeftWall" parent="Terrain/Boundary" instance=ExtResource( 5 )]
+position = Vector2( -597, -1998 )
+scale = Vector2( 1, 200 )
+
+[node name="DeadRats" type="Node2D" parent="."]
+
+[node name="RespawnZone2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 10762, -1207 )
+
+[node name="RespawnZone" parent="." instance=ExtResource( 11 )]
+position = Vector2( 6468, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 11839, -671 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.270588 )
+margin_left = 13184.0
+margin_top = -759.0
+margin_right = 13384.0
+margin_bottom = -422.0

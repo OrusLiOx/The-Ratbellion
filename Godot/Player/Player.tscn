@@ -325,7 +325,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=67]
-extents = Vector2( 8.77785, 6.7507 )
+extents = Vector2( 8.77785, 6.54202 )
 
 [sub_resource type="RectangleShape2D" id=68]
 extents = Vector2( 8.91021, 10 )
@@ -353,6 +353,7 @@ win = ExtResource( 18 )
 slash = ExtResource( 19 )
 
 [node name="CatPaw" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( -16, -40 )
 frames = SubResource( 66 )
 animation = "Swipe"
@@ -371,6 +372,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
+visible = false
 modulate = Color( 1, 1, 1, 0.643137 )
 material = SubResource( 61 )
 anchor_right = 1.0
@@ -397,8 +399,8 @@ frames = SubResource( 17 )
 animation = "Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, -19.22 )
-scale = Vector2( 1.481, 2.856 )
+position = Vector2( 0, -19.5 )
+scale = Vector2( 1.5, 3 )
 shape = SubResource( 67 )
 
 [node name="PlayerFeet" type="Area2D" parent="."]
@@ -406,7 +408,7 @@ position = Vector2( -0.5, -16.5 )
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerFeet"]
-position = Vector2( 0, 14.5 )
+position = Vector2( 0.5, 14.5 )
 scale = Vector2( 1.4, 0.25 )
 shape = SubResource( 68 )
 

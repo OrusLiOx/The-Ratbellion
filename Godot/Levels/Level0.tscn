@@ -9,9 +9,9 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=7]
 [ext_resource path="res://TerrainPrefabs/RespawnZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://TerrainPrefabs/LevelEndArea.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sprites/Levels/Level0.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Levels/Level0/Level0.png" type="Texture" id=10]
 [ext_resource path="res://Fonts/supply-center-font/SupplyCenter-0W9nz.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://Sprites/Levels/Level0BG.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Levels/Level0/Level0BG.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 11 )
@@ -19,7 +19,7 @@ font_data = ExtResource( 11 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
-[node name="Level0" type="Node2D"]
+[node name="Tutorial" type="Node2D"]
 script = ExtResource( 7 )
 deadrat = ExtResource( 6 )
 objective = "Reach the end of the training course"
@@ -77,7 +77,7 @@ position = Vector2( 1546, 307 )
 scale = Vector2( 10, 50 )
 
 [node name="Rope2" parent="Terrain/Climb" instance=ExtResource( 3 )]
-position = Vector2( 6993, 484 )
+position = Vector2( 6993, 492 )
 scale = Vector2( 2, 50 )
 
 [node name="Hide" parent="Terrain/Climb" instance=ExtResource( 3 )]
