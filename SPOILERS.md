@@ -15,5 +15,5 @@ cheat codes are not case sensitive
 - dev mode
   - unlocks all codes
 
-NOTE: having both ghost rat and lab rat makes you invisible
+NOTE: having both ghost rat and lab rat active makes you invisible
     
