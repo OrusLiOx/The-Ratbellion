@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=2]
@@ -21,13 +21,28 @@
 [ext_resource path="res://Sprites/Levels/Level2/mug.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Levels/Level2/sink.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/Levels/Level2/glass.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Levels/Level2/treats.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Levels/Level2/chairYarn.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Levels/Level2/jar.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Levels/Level2/trim.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Levels/Level2/biscuitbox.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Levels/Level2/cup.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Levels/Level2/dishrack.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Levels/Level2/coffeebeans.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Levels/Level2/scoop.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Levels/Level2/coffeeMaker.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Levels/Level2/stove.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Levels/corner.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Levels/Level2/trashcan.png" type="Texture" id=34]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
 deadrat = ExtResource( 3 )
 objective = "Push the cat treats into the trash"
 
-[node name="Blackout" type="ColorRect" parent="."]
+[node name="background" type="Node2D" parent="."]
+
+[node name="Blackout" type="ColorRect" parent="background"]
 margin_left = -3969.0
 margin_top = -7970.0
 margin_right = -3921.0
@@ -35,13 +50,25 @@ margin_bottom = -7907.0
 rect_scale = Vector2( 550, 200 )
 color = Color( 0, 0, 0, 1 )
 
-[node name="Room" type="ColorRect" parent="."]
+[node name="Room" type="ColorRect" parent="background"]
 margin_left = -589.0
 margin_top = -3998.0
 margin_right = -549.0
 margin_bottom = -3958.0
 rect_scale = Vector2( 500, 100 )
 color = Color( 0.796078, 0.796078, 0.796078, 1 )
+
+[node name="Trim" type="Sprite" parent="background"]
+position = Vector2( 1147, -19 )
+texture = ExtResource( 25 )
+
+[node name="Trim2" type="Sprite" parent="background"]
+position = Vector2( 4617, -19 )
+texture = ExtResource( 25 )
+
+[node name="Trim3" type="Sprite" parent="background"]
+position = Vector2( 8087, -19 )
+texture = ExtResource( 25 )
 
 [node name="Terrain" type="Node2D" parent="."]
 
@@ -96,7 +123,7 @@ modulate = Color( 0.67451, 0.87451, 0.698039, 1 )
 position = Vector2( 679, -582 )
 texture = ExtResource( 15 )
 
-[node name="blue" parent="Terrain/Couch" instance=ExtResource( 4 )]
+[node name="green" parent="Terrain/Couch" instance=ExtResource( 4 )]
 modulate = Color( 0.67451, 0.87451, 0.698039, 1 )
 position = Vector2( 1446, -1000 )
 
@@ -174,16 +201,6 @@ scale = Vector2( 36.75, 1 )
 [node name="Seat" parent="Terrain/tablechair/Chair" instance=ExtResource( 5 )]
 position = Vector2( 5313.5, -344 )
 scale = Vector2( 36.75, 3 )
-
-[node name="Climb" type="Node2D" parent="Terrain/tablechair/Chair"]
-
-[node name="ClimbArea" parent="Terrain/tablechair/Chair/Climb" instance=ExtResource( 9 )]
-position = Vector2( 4918, -167 )
-scale = Vector2( 2, 25 )
-
-[node name="ClimbArea2" parent="Terrain/tablechair/Chair/Climb" instance=ExtResource( 9 )]
-position = Vector2( 5548, -720 )
-scale = Vector2( 2, 35 )
 
 [node name="Chair" type="Sprite" parent="Terrain/tablechair/Chair"]
 modulate = Color( 0.85098, 0.85098, 0.85098, 1 )
@@ -282,15 +299,11 @@ scale = Vector2( 3, 1 )
 position = Vector2( 617, -1233 )
 texture = ExtResource( 19 )
 
-[node name="ClimbArea2" parent="Terrain/Counter" instance=ExtResource( 9 )]
-position = Vector2( 10678, -684 )
-scale = Vector2( 2, 35 )
-
 [node name="Left" type="Node2D" parent="Terrain/Counter"]
 
 [node name="LeftTerrain" parent="Terrain/Counter/Left" instance=ExtResource( 5 )]
-position = Vector2( 11765, -515 )
-scale = Vector2( 105, 50 )
+position = Vector2( 11764, -515 )
+scale = Vector2( 104, 50 )
 
 [node name="DishRack" type="Node2D" parent="Terrain/Counter/Left"]
 
@@ -301,6 +314,25 @@ scale = Vector2( 14, 20 )
 [node name="Terrain" parent="Terrain/Counter/Left/DishRack" instance=ExtResource( 5 )]
 position = Vector2( 12244, -1135 )
 scale = Vector2( 45, 12 )
+
+[node name="Bowl" type="Sprite" parent="Terrain/Counter/Left/DishRack"]
+position = Vector2( 12612, -1328 )
+rotation = 1.69995
+texture = ExtResource( 18 )
+
+[node name="Bowl2" type="Sprite" parent="Terrain/Counter/Left/DishRack"]
+position = Vector2( 12541, -1329 )
+rotation = 1.69995
+texture = ExtResource( 18 )
+
+[node name="Bowl3" type="Sprite" parent="Terrain/Counter/Left/DishRack"]
+position = Vector2( 12457, -1328 )
+rotation = 1.69995
+texture = ExtResource( 18 )
+
+[node name="Dishrack" type="Sprite" parent="Terrain/Counter/Left/DishRack"]
+position = Vector2( 12244, -1135 )
+texture = ExtResource( 28 )
 
 [node name="jar" type="Node2D" parent="Terrain/Counter/Left"]
 position = Vector2( 129, -1 )
@@ -313,6 +345,52 @@ scale = Vector2( 15, 1 )
 position = Vector2( 11220, -1215 )
 scale = Vector2( 17, 20 )
 
+[node name="Jar" type="Sprite" parent="Terrain/Counter/Left/jar"]
+position = Vector2( 11220, -1224.5 )
+texture = ExtResource( 24 )
+
+[node name="yarn" type="Node2D" parent="Terrain/Counter/Left"]
+
+[node name="Climb" type="Node2D" parent="Terrain/Counter/Left/yarn"]
+position = Vector2( 3919, -138 )
+
+[node name="ClimbArea" parent="Terrain/Counter/Left/yarn/Climb" instance=ExtResource( 9 )]
+position = Vector2( 4918, -162 )
+scale = Vector2( 2, 25 )
+
+[node name="ClimbArea2" parent="Terrain/Counter/Left/yarn/Climb" instance=ExtResource( 9 )]
+position = Vector2( 5552, -708 )
+scale = Vector2( 2, 35 )
+
+[node name="ClimbArea2" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 9 )]
+position = Vector2( 10696, -808 )
+scale = Vector2( 2, 27 )
+
+[node name="ClimbArea3" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 9 )]
+position = Vector2( 10394, -764 )
+scale = Vector2( 2, 22 )
+
+[node name="Terrain" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 8 )]
+position = Vector2( 9471, -1210 )
+scale = Vector2( 2, 1 )
+
+[node name="Terrain2" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 8 )]
+position = Vector2( 8837, -578 )
+scale = Vector2( 2, 1 )
+
+[node name="Terrain3" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 8 )]
+position = Vector2( 10394, -987 )
+scale = Vector2( 2, 1 )
+
+[node name="Terrain4" parent="Terrain/Counter/Left/yarn" instance=ExtResource( 8 )]
+position = Vector2( 10696, -1079 )
+scale = Vector2( 2, 1 )
+
+[node name="ChairYarn" type="Sprite" parent="Terrain/Counter/Left/yarn"]
+modulate = Color( 0.937255, 0.721569, 0.945098, 1 )
+position = Vector2( 10325, -620 )
+texture = ExtResource( 23 )
+
 [node name="cup" type="Node2D" parent="Terrain/Counter/Left"]
 position = Vector2( 11, -29 )
 
@@ -321,8 +399,12 @@ position = Vector2( 10961, -1062 )
 scale = Vector2( 10, 20 )
 
 [node name="LeftCup" parent="Terrain/Counter/Left/cup" instance=ExtResource( 10 )]
-position = Vector2( 10960, -1257 )
+position = Vector2( 10961, -1257 )
 scale = Vector2( 10, 1 )
+
+[node name="cup" type="Sprite" parent="Terrain/Counter/Left/cup"]
+position = Vector2( 10961, -1167 )
+texture = ExtResource( 27 )
 
 [node name="box" type="Node2D" parent="Terrain/Counter/Left"]
 position = Vector2( -151, 266 )
@@ -335,11 +417,23 @@ scale = Vector2( 25, 20 )
 position = Vector2( 11219, -1409 )
 scale = Vector2( 25, 1 )
 
+[node name="Biscuitbox" type="Sprite" parent="Terrain/Counter/Left/box"]
+position = Vector2( 11219, -1350 )
+texture = ExtResource( 26 )
+
 [node name="pink" parent="Terrain/Counter/Left" instance=ExtResource( 4 )]
 modulate = Color( 0.937255, 0.721569, 0.945098, 1 )
 position = Vector2( 11676, -1015 )
 
 [node name="Right" type="Node2D" parent="Terrain/Counter"]
+
+[node name="Sink-stove" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
+position = Vector2( 15473, -515 )
+scale = Vector2( 84.7, 50 )
+
+[node name="Sink-stove2" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
+position = Vector2( 18081, -515 )
+scale = Vector2( 70, 50 )
 
 [node name="end" type="Node2D" parent="Terrain/Counter/Right"]
 position = Vector2( 1830, 0 )
@@ -348,12 +442,17 @@ position = Vector2( 1830, 0 )
 modulate = Color( 0.682353, 0.807843, 1, 1 )
 position = Vector2( 15962, -1015 )
 
-[node name="Pushable" parent="Terrain/Counter/Right/end" instance=ExtResource( 12 )]
-position = Vector2( 16542, -1015 )
-scale = Vector2( 10, 10 )
-
 [node name="LevelEndArea" parent="Terrain/Counter/Right/end" instance=ExtResource( 13 )]
 position = Vector2( 16982, -1015 )
+
+[node name="Pushable" parent="Terrain/Counter/Right/end" instance=ExtResource( 12 )]
+position = Vector2( 16542, -1015 )
+scale = Vector2( 15, 20 )
+
+[node name="Treats" type="Sprite" parent="Terrain/Counter/Right/end/Pushable"]
+position = Vector2( 0, -10 )
+scale = Vector2( 0.0666667, 0.05 )
+texture = ExtResource( 22 )
 
 [node name="stove" type="Node2D" parent="Terrain/Counter/Right"]
 position = Vector2( -315, 0 )
@@ -378,15 +477,19 @@ scale = Vector2( 78, 50 )
 position = Vector2( 17166, -965 )
 scale = Vector2( 13, 5 )
 
+[node name="Stove" type="Sprite" parent="Terrain/Counter/Right/stove"]
+position = Vector2( 17166, -964 )
+texture = ExtResource( 32 )
+
 [node name="coffeemaker" type="Node2D" parent="Terrain/Counter/Right"]
 
 [node name="Terrain" parent="Terrain/Counter/Right/coffeemaker" instance=ExtResource( 5 )]
-position = Vector2( 15786, -1312 )
+position = Vector2( 15789, -1265 )
 scale = Vector2( 25, 30 )
 
-[node name="ClimbArea2" parent="Terrain/Counter/Right/coffeemaker" instance=ExtResource( 9 )]
-position = Vector2( 15517, -1529 )
-scale = Vector2( 2, 10 )
+[node name="CoffeeMaker" type="Sprite" parent="Terrain/Counter/Right/coffeemaker"]
+position = Vector2( 15789, -1290 )
+texture = ExtResource( 31 )
 
 [node name="mug" type="Node2D" parent="Terrain/Counter/Right"]
 position = Vector2( 15500, 118 )
@@ -416,11 +519,11 @@ position = Vector2( 10961, -1062 )
 scale = Vector2( 20, 20 )
 
 [node name="LeftCup" parent="Terrain/Counter/Right/beans" instance=ExtResource( 10 )]
-position = Vector2( 10960, -1257 )
+position = Vector2( 10961, -1257 )
 scale = Vector2( 20, 1 )
 
 [node name="scoop" type="Node2D" parent="Terrain/Counter/Right/beans"]
-position = Vector2( 88, -1 )
+position = Vector2( 138, -1 )
 
 [node name="SafeArea2" parent="Terrain/Counter/Right/beans/scoop" instance=ExtResource( 6 )]
 position = Vector2( 10862, -1297 )
@@ -430,13 +533,13 @@ scale = Vector2( 5, 3 )
 position = Vector2( 10812, -1321 )
 scale = Vector2( 10, 1 )
 
-[node name="Sink-stove" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
-position = Vector2( 15468, -515 )
-scale = Vector2( 85.3, 50 )
+[node name="Scoop" type="Sprite" parent="Terrain/Counter/Right/beans/scoop"]
+position = Vector2( 10812, -1298.5 )
+texture = ExtResource( 30 )
 
-[node name="Sink-stove2" parent="Terrain/Counter/Right" instance=ExtResource( 5 )]
-position = Vector2( 18081, -515 )
-scale = Vector2( 70, 50 )
+[node name="Coffeebeans" type="Sprite" parent="Terrain/Counter/Right/beans"]
+position = Vector2( 10961, -1090 )
+texture = ExtResource( 29 )
 
 [node name="Boundary" type="Node2D" parent="Terrain"]
 
@@ -448,20 +551,81 @@ scale = Vector2( 1000, 1 )
 position = Vector2( -597, -1998 )
 scale = Vector2( 1, 200 )
 
+[node name="CounterSprites" type="Node2D" parent="Terrain/Boundary"]
+position = Vector2( -1764, 47 )
+
+[node name="Corner" type="Sprite" parent="Terrain/Boundary/CounterSprites"]
+position = Vector2( 10730, -1009 )
+rotation = 1.5708
+texture = ExtResource( 33 )
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/Boundary/CounterSprites"]
+margin_left = 10735.0
+margin_top = -1014.0
+margin_right = 12803.0
+margin_bottom = -1004.0
+
+[node name="ColorRect2" type="ColorRect" parent="Terrain/Boundary/CounterSprites"]
+margin_left = 10725.0
+margin_top = -1004.0
+margin_right = 10735.0
+margin_bottom = -47.0
+
+[node name="ColorRect3" type="ColorRect" parent="Terrain/Boundary/CounterSprites"]
+margin_left = 14627.0
+margin_top = -1014.0
+margin_right = 16126.0
+margin_bottom = -1004.0
+
+[node name="ColorRect4" type="ColorRect" parent="Terrain/Boundary/CounterSprites"]
+margin_left = 17576.0
+margin_top = -1014.0
+margin_right = 18770.0
+margin_bottom = -1004.0
+
+[node name="Corner2" type="Sprite" parent="Terrain/Boundary/CounterSprites"]
+position = Vector2( 18775, -1009 )
+texture = ExtResource( 33 )
+
+[node name="ColorRect5" type="ColorRect" parent="Terrain/Boundary/CounterSprites"]
+margin_left = 18770.0
+margin_top = -1004.0
+margin_right = 18780.0
+margin_bottom = -47.0
+
+[node name="Floor" type="Node2D" parent="Terrain/Boundary"]
+modulate = Color( 0.27451, 0.223529, 0.168627, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/Boundary/Floor"]
+margin_left = -587.0
+margin_top = 1.0
+margin_right = 8971.0
+margin_bottom = 11.0
+
+[node name="ColorRect2" type="ColorRect" parent="Terrain/Boundary/Floor"]
+margin_left = 17006.0
+margin_top = 1.0
+margin_right = 19410.0
+margin_bottom = 11.0
+
+[node name="trashcan" type="Node2D" parent="."]
+
+[node name="Terrain" parent="trashcan" instance=ExtResource( 5 )]
+position = Vector2( 17060, -822 )
+rotation = 1.12748
+scale = Vector2( 15, 1 )
+
+[node name="Trashcan" type="Sprite" parent="trashcan"]
+position = Vector2( 17265, -721 )
+texture = ExtResource( 34 )
+
 [node name="DeadRats" type="Node2D" parent="."]
 
 [node name="RespawnZone2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 10762, -1207 )
 
 [node name="RespawnZone" parent="." instance=ExtResource( 11 )]
-position = Vector2( 6468, 0 )
+position = Vector2( 5266, -1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 11839, -671 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color( 1, 1, 1, 0.270588 )
-margin_left = 13184.0
-margin_top = -759.0
-margin_right = 13384.0
-margin_bottom = -422.0
+position = Vector2( 16311, -1347 )

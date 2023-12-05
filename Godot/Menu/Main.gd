@@ -18,6 +18,8 @@ func _on_Settings_button_down():
 	$Settings.visible=true
 	$Settings/Main.visible=true
 	$Settings/CheatCodes.visible=false
+	$Settings/Sound.visible=false
+	$Settings/Controls.visible=false
 	$Main.visible = false
 func _on_Start_button_down():
 	Globals.playMode = true

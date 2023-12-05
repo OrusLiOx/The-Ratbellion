@@ -10,12 +10,12 @@
 [ext_resource path="res://Sprites/MenuThings/Chalk/MainMenuChalk.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/MenuThings/rats.png" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 50
 font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
-default_font = SubResource( 3 )
+default_font = SubResource( 5 )
 
 [sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/CloseBox.png-4ce66ce204fe973db97f67a0b8a9f15a.stex"

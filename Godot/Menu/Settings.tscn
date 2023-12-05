@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Fonts/SupplyCenterTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Menu/Settings.gd" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://Menu/Slider.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/MenuThings/Chalk/CheatCodeEnterBox.png" type="Texture" id=6]
 [ext_resource path="res://Menu/CheatCodeLabel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Sprites/MenuThings/Chalk/Settings.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/MenuThings/Chalk/buttons/longbutton0.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/MenuThings/Chalk/buttons/longbutton2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/MenuThings/Chalk/buttons/longbutton1.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -16,16 +18,18 @@ font_data = ExtResource( 3 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
 [node name="Settings" type="Node2D"]
 position = Vector2( 38, 62 )
 script = ExtResource( 2 )
 
 [node name="Main" type="Node2D" parent="."]
-visible = false
-
-[node name="Settings" type="Sprite" parent="Main"]
-position = Vector2( 532, 246 )
-texture = ExtResource( 8 )
 
 [node name="Title" type="Label" parent="Main"]
 anchor_left = 0.5
@@ -38,38 +42,115 @@ theme = SubResource( 2 )
 text = "Settings"
 align = 1
 
+[node name="OpenSound" type="Button" parent="Main"]
+margin_left = 383.0
+margin_top = 137.0
+margin_right = 679.0
+margin_bottom = 187.0
+focus_mode = 0
+theme = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "Sound"
+flat = true
+
+[node name="Longbutton0" type="Sprite" parent="Main/OpenSound"]
+position = Vector2( 150, 27 )
+texture = ExtResource( 8 )
+
+[node name="OpenControls" type="Button" parent="Main"]
+margin_left = 383.0
+margin_top = 207.0
+margin_right = 679.0
+margin_bottom = 257.0
+focus_mode = 0
+theme = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "Controls"
+flat = true
+
+[node name="Longbutton1" type="Sprite" parent="Main/OpenControls"]
+position = Vector2( 150, 24 )
+texture = ExtResource( 10 )
+
 [node name="OpenCheatCodes" type="Button" parent="Main"]
 margin_left = 383.0
-margin_top = 107.0
+margin_top = 277.0
 margin_right = 679.0
-margin_bottom = 157.0
+margin_bottom = 327.0
 focus_mode = 0
 theme = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "Cheat Codes"
 flat = true
 
-[node name="Label" parent="Main" instance=ExtResource( 5 )]
-margin_left = 183.0
-margin_top = 184.0
-margin_right = 356.0
-margin_bottom = 274.0
+[node name="Longbutton2" type="Sprite" parent="Main/OpenCheatCodes"]
+position = Vector2( 147, 25 )
+texture = ExtResource( 9 )
+
+[node name="Sound" type="Node2D" parent="."]
+visible = false
+
+[node name="Title" type="Label" parent="Sound"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 250.0
+margin_top = 6.0
+margin_right = 805.0
+margin_bottom = 135.0
+theme = SubResource( 2 )
+text = "Sound"
+align = 1
+
+[node name="Label" parent="Sound" instance=ExtResource( 5 )]
+margin_left = 169.0
+margin_top = 128.0
+margin_right = 342.0
+margin_bottom = 218.0
 audio_index = 0
 
-[node name="Label2" parent="Main" instance=ExtResource( 5 )]
-margin_left = 183.0
-margin_top = 254.0
-margin_right = 356.0
-margin_bottom = 344.0
+[node name="Label2" parent="Sound" instance=ExtResource( 5 )]
+margin_left = 169.0
+margin_top = 198.0
+margin_right = 342.0
+margin_bottom = 288.0
 text = "music"
 
-[node name="Label3" parent="Main" instance=ExtResource( 5 )]
-margin_left = 183.0
-margin_top = 324.0
-margin_right = 356.0
-margin_bottom = 414.0
+[node name="Label3" parent="Sound" instance=ExtResource( 5 )]
+margin_left = 169.0
+margin_top = 268.0
+margin_right = 342.0
+margin_bottom = 358.0
 text = "sfx"
 audio_index = 2
+
+[node name="Controls" type="Node2D" parent="."]
+visible = false
+position = Vector2( 526, 241 )
+
+[node name="Title" type="Label" parent="Controls"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -277.0
+margin_top = -240.0
+margin_right = 278.0
+margin_bottom = -111.0
+theme = SubResource( 4 )
+text = "Controls"
+align = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls"]
+margin_left = -137.0
+margin_top = -128.0
+margin_right = 730.0
+margin_bottom = 316.0
+theme = ExtResource( 1 )
+text = "run - a/d
+climb - w/s
+jump - space
+drop - s+space
+
+pause - tab
+respawn - r"
 
 [node name="CheatCodes" type="Node2D" parent="."]
 visible = false
@@ -164,6 +245,8 @@ expand_icon = true
 position = Vector2( 921, 17 )
 texture = ExtResource( 4 )
 
+[connection signal="button_down" from="Main/OpenSound" to="." method="_on_OpenSound_button_down"]
+[connection signal="button_down" from="Main/OpenControls" to="." method="_on_OpenControls_button_down"]
 [connection signal="button_down" from="Main/OpenCheatCodes" to="." method="_on_OpenCheatCodes_button_down"]
 [connection signal="text_changed" from="CheatCodes/CodeInput" to="." method="_on_CodeInput_text_changed"]
 [connection signal="button_down" from="CheatCodes/EnterCode" to="." method="_on_EnterCode_button_down"]

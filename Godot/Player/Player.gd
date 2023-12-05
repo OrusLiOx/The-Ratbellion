@@ -260,6 +260,8 @@ func pause():
 		$Pause/Main.visible = true
 		$Settings/Main.visible = true
 		$Settings/CheatCodes.visible = false
+		$Settings/Sound.visible=false
+		$Settings/Controls.visible=false
 		timer.paused = true
 func startLevel(var text):
 	# set defaults

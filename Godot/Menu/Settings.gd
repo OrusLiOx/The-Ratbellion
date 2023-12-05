@@ -3,6 +3,7 @@ extends Node2D
 var codeHandlers
 var codeInput
 var codes
+var current
 var codeToId = {
 	"catnip": 0,
 	"pigeon":1,
@@ -25,12 +26,14 @@ func _ready():
 		$CheatCodes/Codes/Ghost,
 		$CheatCodes/Codes/LabRat
 	]
+	current = $Main
 	
 # close settings menus
 func _on_Close_button_down():
-	if $CheatCodes.visible:
-		$CheatCodes.visible = false
+	if current != $Main:
+		current.visible = false
 		$Main.visible = true
+		current = $Main
 	else:
 		self.visible = false
 		emit_signal("close_settings")
@@ -124,6 +127,7 @@ func _on_OpenCheatCodes_button_down():
 	
 	# display menu
 	$CheatCodes.visible = true;
+	current = $CheatCodes
 func setCodeHandler(var code):
 	var id = codeToId[code]
 	# if found, code text and check box visible
@@ -142,3 +146,14 @@ func setCodeHandler(var code):
 	else:
 		codeHandlers[id].get_child(0).text= ""
 	$CheatCodes.visible =false
+
+
+func _on_OpenSound_button_down():
+	$Main.visible = false
+	$Sound.visible = true
+	current = $Sound
+
+func _on_OpenControls_button_down():
+	$Main.visible = false
+	$Controls.visible = true
+	current = $Controls

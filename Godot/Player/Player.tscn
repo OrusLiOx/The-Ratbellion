@@ -425,6 +425,7 @@ text = "Objective"
 
 [node name="Pause" type="Node2D" parent="."]
 visible = false
+z_index = 2
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
 margin_left = -594.0
@@ -503,6 +504,7 @@ texture = ExtResource( 13 )
 [node name="Settings" parent="." instance=ExtResource( 7 )]
 visible = false
 position = Vector2( -530, -240 )
+z_index = 2
 
 [node name="Complete" type="Label" parent="."]
 visible = false
