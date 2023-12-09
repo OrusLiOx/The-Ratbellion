@@ -17,6 +17,7 @@ shape = SubResource( 3 )
 shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0

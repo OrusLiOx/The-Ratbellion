@@ -53,6 +53,18 @@ enabled_focus_mode = 0
 text = "Level 1"
 flat = true
 
+[node name="Level2" type="Button" parent="."]
+margin_left = -147.0
+margin_top = 71.0
+margin_right = 149.0
+margin_bottom = 121.0
+rect_pivot_offset = Vector2( -957, 0 )
+focus_mode = 0
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Level 2"
+flat = true
+
 [node name="Main" type="Button" parent="."]
 margin_left = 338.0
 margin_top = -253.0
@@ -91,10 +103,16 @@ position = Vector2( 0, -95 )
 texture = ExtResource( 8 )
 vframes = 4
 
+[node name="TutorialBox" type="Sprite" parent="TutorialBox"]
+position = Vector2( 0, 199 )
+texture = ExtResource( 8 )
+vframes = 4
+
 [node name="Rats" type="Sprite" parent="."]
 position = Vector2( 0, 238.5 )
 texture = ExtResource( 9 )
 
 [connection signal="button_down" from="Tutorial" to="." method="_on_Tutorial_button_down"]
 [connection signal="button_down" from="Level1" to="." method="_on_Level1_button_down"]
+[connection signal="button_down" from="Level2" to="." method="_on_Level2_button_down"]
 [connection signal="button_down" from="Main" to="." method="_on_Main_button_down"]

@@ -20,8 +20,14 @@ func _on_Tutorial_button_down():
 func _on_Level1_button_down():
 	queue_free()
 	return get_tree().change_scene("res://Levels/Level1.tscn")
+func _on_Level2_button_down():
+	queue_free()
+	return get_tree().change_scene("res://Levels/Level2.tscn")
+
 func _on_Main_button_down():
 	queue_free()
 	return get_tree().change_scene("res://Menu/Main.tscn")
+
+
 
 

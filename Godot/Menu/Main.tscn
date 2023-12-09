@@ -149,7 +149,7 @@ texture = ExtResource( 9 )
 
 [connection signal="button_down" from="Main/Buttons/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="Main/Buttons/Start" to="." method="_on_Start_button_down"]
-[connection signal="button_down" from="Main/Buttons/LevelSelect" to="." method="_on_Controls_button_down"]
 [connection signal="button_down" from="Main/Buttons/LevelSelect" to="." method="_on_LevelSelect_button_down"]
+[connection signal="button_down" from="Main/Buttons/LevelSelect" to="." method="_on_Controls_button_down"]
 [connection signal="close_settings" from="Settings" to="." method="_on_Settings_close_settings"]
 [connection signal="button_down" from="Controls/CloseControls" to="." method="_on_CloseControls_button_down"]

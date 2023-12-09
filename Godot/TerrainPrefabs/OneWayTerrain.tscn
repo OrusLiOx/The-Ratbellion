@@ -20,6 +20,7 @@ shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0

@@ -114,7 +114,6 @@ func _physics_process(_delta):
 
 # determine movement functions
 func determineWalk():
-
 	if Input.is_action_pressed("Left"): 
 		if !Input.is_action_pressed("Right"):
 			flip(true)

@@ -52,9 +52,9 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Room" type="ColorRect" parent="background"]
 margin_left = -589.0
-margin_top = -3998.0
+margin_top = -4000.0
 margin_right = -549.0
-margin_bottom = -3958.0
+margin_bottom = -3960.0
 rect_scale = Vector2( 500, 100 )
 color = Color( 0.796078, 0.796078, 0.796078, 1 )
 
@@ -69,6 +69,13 @@ texture = ExtResource( 25 )
 [node name="Trim3" type="Sprite" parent="background"]
 position = Vector2( 8087, -19 )
 texture = ExtResource( 25 )
+
+[node name="Blackout2" type="ColorRect" parent="background"]
+margin_left = 8960.0
+margin_top = -968.0
+margin_right = 17017.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="Terrain" type="Node2D" parent="."]
 
@@ -306,6 +313,7 @@ position = Vector2( 11764, -515 )
 scale = Vector2( 104, 50 )
 
 [node name="DishRack" type="Node2D" parent="Terrain/Counter/Left"]
+position = Vector2( 0, 1 )
 
 [node name="SafeArea" parent="Terrain/Counter/Left/DishRack" instance=ExtResource( 6 )]
 position = Vector2( 12529, -1302 )
